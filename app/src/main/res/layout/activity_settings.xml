@@ -39,15 +39,44 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="175dp"
+        android:layout_width="238dp"
         android:layout_height="67dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:text="LEVELS"
+        android:text="SETTINGS"
         android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="0dp" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="343dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="8dp"
+        android:checked="true"
+        android:text="SOUND"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView" />
+
+    <Switch
+        android:id="@+id/switch2"
+        android:layout_width="343dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:checked="true"
+        android:text="MUSIC"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch1" />
 
 </android.support.constraint.ConstraintLayout>
