@@ -18,7 +18,7 @@ public class LevelsActivity extends AppCompatActivity {
     }
 
     public void levelButton(View view) {
-        Intent intent = new Intent (this, Game.class);
+        Intent intent = new Intent (this, GameActivity.class);
         startActivity(intent);
     }
 }
