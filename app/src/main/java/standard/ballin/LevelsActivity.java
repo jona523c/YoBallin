@@ -12,7 +12,7 @@ public class LevelsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+               WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_levels);
     }
 
@@ -25,5 +25,11 @@ public class LevelsActivity extends AppCompatActivity {
     public void levelButton(View view) {
         Intent intent = new Intent (this, GameActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 }

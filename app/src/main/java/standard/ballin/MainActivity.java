@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         // Release mediaplayer to free memory
         MusicPlay.getMediaPlayer().release();
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onDestroy();
     }
 

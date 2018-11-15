@@ -41,7 +41,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         super(context);
         sensorManager = (SensorManager) context.getSystemService(SENSOR_SERVICE);
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        
+
         setupLayout();
 
         DisplayMetrics displayMetrics = new DisplayMetrics();

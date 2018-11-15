@@ -67,6 +67,7 @@ public class GameActivity extends FragmentActivity {
         super.onDestroy();
 
         game.stopGame();
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 }
