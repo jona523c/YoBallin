@@ -5,19 +5,14 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Point;
 import android.graphics.Rect;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentManager;
 import android.util.DisplayMetrics;
 import android.view.Display;
-import android.view.LayoutInflater;
 import android.view.Surface;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
@@ -76,12 +71,11 @@ public class Game extends FrameLayout implements SensorEventListener {
 
 
     public void updateBall(float x, float y, long stamp) {
-        long st = stamp;
         if(lastStamp != 0) {
-            float t = (st - lastStamp) / 1000.f;
+            float t = (stamp - lastStamp) / 1000.f;
             ball.computePosition(x,y,t);
         }
-        lastStamp = st;
+        lastStamp = stamp;
 
         ceilingCollisions();
     }
