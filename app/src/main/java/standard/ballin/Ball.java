@@ -38,14 +38,14 @@ public class Ball extends View {
      * computePosition calculates the new position of the ball. Using the speed and acceleration of the ball.
      */
     public void computePosition(float x, float y, float t) {
-        float ax = -x/50;
-        float ay = y/50;
+        float ax = -x/10;
+        float ay = y/10;
 
         posX += speedX * t + ax * t * t / 2;
         posY += speedY * t + ax * t * t / 2;
 
-        speedX += ax*t;
-        speedY += ay*t;
+        speedX = ax*t;
+        speedY = ay*t;
     }
 
     /**
