@@ -41,17 +41,8 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         super(context);
         sensorManager = (SensorManager) context.getSystemService(SENSOR_SERVICE);
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        header = new ImageView(getContext());
-        header.setImageResource(R.drawable.header);
-        LayoutParams layout = new LayoutParams(LayoutParams.WRAP_CONTENT, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 85, getResources().getDisplayMetrics()));
-        layout.setMargins(layout.leftMargin, layout.topMargin, layout.rightMargin, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics()));
-        header.setLayoutParams(layout);
-        header.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        ConstraintLayout constraintLayout = this;
-        ConstraintSet set = new ConstraintSet();
-        constraintLayout.addView(header,0);
-
-
+        
+        setupLayout();
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
         display = ((Activity) context).getWindowManager().getDefaultDisplay();
@@ -67,6 +58,18 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         ball.setBackgroundResource(R.drawable.header);
         ball.setLayerType(LAYER_TYPE_HARDWARE, null);
         addView(ball, new ViewGroup.LayoutParams(ballWidth, ballHeight));
+    }
+
+    private void setupLayout() {
+        header = new ImageView(getContext());
+        header.setImageResource(R.drawable.header);
+        LayoutParams layout = new LayoutParams(LayoutParams.WRAP_CONTENT, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 85, getResources().getDisplayMetrics()));
+        layout.setMargins(layout.leftMargin, layout.topMargin, layout.rightMargin, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics()));
+        header.setLayoutParams(layout);
+        header.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        ConstraintLayout constraintLayout = this;
+        ConstraintSet set = new ConstraintSet();
+        constraintLayout.addView(header,0);
     }
 
 
