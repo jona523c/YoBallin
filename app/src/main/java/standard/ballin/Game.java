@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.Rect;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -85,10 +86,6 @@ public class Game extends FrameLayout implements SensorEventListener {
         ceilingCollisions();
     }
 
-    private boolean ballInFinishline() {
-        return ball.getPosY() > 0.0505f;
-    }
-
     private void finishDialog() {
         ((GameActivity) getContext()).confirmDialog();
 
@@ -106,8 +103,9 @@ public class Game extends FrameLayout implements SensorEventListener {
         Paint paint = new Paint();
         paint.setColor(Color.GREEN);
         // TODO graphical finishline instead of just green finishline.
-        canvas.drawRect(getLeft(), getHeight()-100, getWidth(), getHeight(), paint);
-        if(ballInFinishline()) {
+        Rect rect = new Rect(getLeft(), getHeight()-100, getWidth(), getHeight());
+        canvas.drawRect(rect, paint);
+        if(rect.contains((int) ball.getTranslationX(), (int) ball.getTranslationY())) {
             stopGame();
             finishDialog();
             return;
