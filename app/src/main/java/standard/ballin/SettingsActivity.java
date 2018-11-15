@@ -21,6 +21,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
 
+        // Music toggle on and off.
         musicSwitch = (Switch) findViewById(R.id.switch2);
         musicSwitch.setChecked(MusicPlay.isPlaying());
         musicSwitch.setOnClickListener(new View.OnClickListener() {
@@ -28,14 +29,14 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (MusicPlay.isPlaying()) {
                     MusicPlay.pauseAudio();
-                    musicSwitch.setChecked(MusicPlay.isPlaying());
                 } else {
                     MusicPlay.resumeAudio();
-                    musicSwitch.setChecked(MusicPlay.isPlaying());
                 }
+                musicSwitch.setChecked(MusicPlay.isPlaying());
             }
         });
 
+        // SeekBar that controls volume level (currently for the whole phone)
         musicBar = (SeekBar) findViewById(R.id.musicBar);
         musicBar.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC));
         musicBar.setProgress(audioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
@@ -56,6 +57,7 @@ public class SettingsActivity extends AppCompatActivity {
         });
     }
 
+    /** Called when user clicks the back-arrow, returns to last screen **/
     public void backButton(View view) {
         finish();
     }
