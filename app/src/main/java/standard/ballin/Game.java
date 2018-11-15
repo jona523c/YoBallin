@@ -3,12 +3,18 @@ package standard.ballin;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Point;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentManager;
 import android.util.DisplayMetrics;
 import android.view.Display;
+import android.view.LayoutInflater;
 import android.view.Surface;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,10 +51,6 @@ public class Game extends FrameLayout implements SensorEventListener {
         ball.setBackgroundResource(R.drawable.header);
         ball.setLayerType(LAYER_TYPE_HARDWARE, null);
         addView(ball, new ViewGroup.LayoutParams(ballWidth, ballHeight));
-
-        View finishline = new View(getContext());
-        finishline.setBackgroundResource(R.drawable.ic_launcher_foreground);
-        addView(finishline, new ViewGroup.LayoutParams(5,1));
     }
     public void ceilingCollisions() {
         final float xmax = horizontalCeiling;
@@ -83,6 +85,15 @@ public class Game extends FrameLayout implements SensorEventListener {
         ceilingCollisions();
     }
 
+    private boolean ballInFinishline() {
+        return ball.getPosY() > 0.0505f;
+    }
+
+    private void finishDialog() {
+        ((GameActivity) getContext()).confirmDialog();
+
+    }
+
     public float getPosX() {
         return ball.getPosX();
     }
@@ -92,6 +103,16 @@ public class Game extends FrameLayout implements SensorEventListener {
     }
 
     public void onDraw(Canvas canvas) {
+        Paint paint = new Paint();
+        paint.setColor(Color.GREEN);
+        // TODO graphical finishline instead of just green finishline.
+        canvas.drawRect(getLeft(), getHeight()-100, getWidth(), getHeight(), paint);
+        if(ballInFinishline()) {
+            stopGame();
+            finishDialog();
+            return;
+        }
+        super.onDraw(canvas);
         final long now = System.currentTimeMillis();
         final float sx = sensorX;
         final float sy = sensorY;

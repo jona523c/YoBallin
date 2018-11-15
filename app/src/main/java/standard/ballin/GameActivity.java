@@ -3,10 +3,12 @@ package standard.ballin;
 import android.app.Activity;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.WindowManager;
 
-public class GameActivity extends Activity {
+public class GameActivity extends FragmentActivity {
     private Game game;
     private SensorManager sensorManager;
     private WindowManager windowManager;
@@ -54,4 +56,10 @@ public class GameActivity extends Activity {
         game.stopGame();
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
+    public void confirmDialog() {
+        DialogFragment newFragment = new FinishDialog();
+        newFragment.show(getSupportFragmentManager(), "finishline");
+    }
+
+
 }
