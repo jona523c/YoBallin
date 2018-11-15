@@ -21,4 +21,12 @@
 
     <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="BallinTheme" parent="Theme.AppCompat.NoActionBar" >
+        <item name="colorPrimary">@color/primary_material_dark_1</item>
+        <item name="android:colorBackground">@color/background_material_dark</item>
+        <item name="android:navigationBarColor">@color/primary_material_dark_1</item>
+        <item name="android:textColorSecondaryInverse">@color/secondary_text_material_light</item>
+        <item name="android:statusBarColor">@color/primary_material_dark_1</item>
+    </style>
+
 </resources>

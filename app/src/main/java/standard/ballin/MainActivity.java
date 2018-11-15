@@ -18,11 +18,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Wakelock
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-
         // Starts the background music
-        MusicPlay.playAudio(getApplicationContext(), R.raw.dance);
+        MusicPlay.playAudio(getApplicationContext(), R.raw.flute);
 
         // If sound shortcut is clicked, turn on or turn off sound.
         soundButton = (ImageView) findViewById(R.id.soundView);
@@ -61,8 +58,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         // Release mediaplayer to free memory
         MusicPlay.getMediaPlayer().release();
-        // Remove wakelock
-        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         super.onDestroy();
     }
 
