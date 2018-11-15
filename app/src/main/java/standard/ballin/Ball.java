@@ -31,8 +31,8 @@ public class Ball extends View {
     }
 
     /**
-     * @param x The position in x-axis
-     * @param y The position in y-axis
+     * @param x The measured (by the sensor) acceleration in x-axis
+     * @param y The measured (by the sensor) acceleration in y-axis
      * @param t The time since last stamp
      *
      * computePosition calculates the new position of the ball. Using the speed and acceleration of the ball.
