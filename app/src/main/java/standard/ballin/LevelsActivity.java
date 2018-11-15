@@ -13,10 +13,12 @@ public class LevelsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_levels);
     }
 
+    /** **/
     public void backButton(View view) {
         finish();
     }
 
+    /** **/
     public void levelButton(View view) {
         Intent intent = new Intent (this, GameActivity.class);
         startActivity(intent);

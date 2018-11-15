@@ -18,10 +18,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Wakelock
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
+        // Starts the background music
         MusicPlay.playAudio(getApplicationContext(), R.raw.dance);
 
+        // If sound shortcut is clicked, turn on or turn off sound.
         soundButton = (ImageView) findViewById(R.id.soundView);
         soundButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Settings shortcut starts Settings activity
         settingsButton = (ImageView) findViewById(R.id.settingsView);
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        // Make sure the shortcut is in the correct state
         soundButton = (ImageView) findViewById(R.id.soundView);
         soundButton.setActivated(MusicPlay.isPlaying());
         super.onResume();
@@ -54,12 +59,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        // Release mediaplayer to free memory
         MusicPlay.getMediaPlayer().release();
+        // Remove wakelock
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         super.onDestroy();
     }
 
-    /** Called when user clicks play button **/
+    /** Called when user clicks play button, starts the Levels screen **/
     public void playButton(View view) {
         Intent intent = new Intent (this, LevelsActivity.class);
         startActivity(intent);
