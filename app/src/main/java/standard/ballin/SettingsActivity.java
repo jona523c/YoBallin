@@ -27,10 +27,10 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (MusicPlay.isPlaying()) {
-                    MusicPlay.stopAudio();
+                    MusicPlay.pauseAudio();
                     musicSwitch.setChecked(MusicPlay.isPlaying());
                 } else {
-                    MusicPlay.playAudio(getApplicationContext(), R.raw.dance);
+                    MusicPlay.resumeAudio();
                     musicSwitch.setChecked(MusicPlay.isPlaying());
                 }
             }
