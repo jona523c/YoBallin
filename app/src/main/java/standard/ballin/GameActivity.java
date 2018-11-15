@@ -1,16 +1,10 @@
 package standard.ballin;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.os.PowerManager;
-import android.support.annotation.ColorInt;
-import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
-
-import standard.ballin.Game;
 
 public class GameActivity extends Activity {
     private Game game;

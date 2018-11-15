@@ -10,6 +10,7 @@ import android.hardware.SensorManager;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.Surface;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
@@ -44,6 +45,10 @@ public class Game extends FrameLayout implements SensorEventListener {
         ball.setBackgroundResource(R.drawable.header);
         ball.setLayerType(LAYER_TYPE_HARDWARE, null);
         addView(ball, new ViewGroup.LayoutParams(ballWidth, ballHeight));
+
+        View finishline = new View(getContext());
+        finishline.setBackgroundResource(R.drawable.ic_launcher_foreground);
+        addView(finishline, new ViewGroup.LayoutParams(5,1));
     }
     public void ceilingCollisions() {
         final float xmax = horizontalCeiling;
@@ -87,10 +92,6 @@ public class Game extends FrameLayout implements SensorEventListener {
     }
 
     public void onDraw(Canvas canvas) {
-        /*
-         * Compute the new position of our object, based on accelerometer
-         * data and present time.
-         */
         final long now = System.currentTimeMillis();
         final float sx = sensorX;
         final float sy = sensorY;
@@ -101,15 +102,10 @@ public class Game extends FrameLayout implements SensorEventListener {
         final float cy = currentY;
         final float xs = scaleWidthFromDpi;
         final float ys = scaleHeightFromDpi;
-            /*
-             * We transform the canvas so that the coordinate system matches
-             * the sensors coordinate system with the origin in the center
-             * of the screen and the unit is the meter.
-             */
-            final float x = cx + getPosX() * xs;
-            final float y = cy + getPosY() * ys;
-            ball.setTranslationX(x);
-            ball.setTranslationY(y);
+        final float x = cx + getPosX() * xs;
+        final float y = cy + getPosY() * ys;
+        ball.setTranslationX(x);
+        ball.setTranslationY(y);
         invalidate();
     }
 
