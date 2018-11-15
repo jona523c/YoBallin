@@ -7,7 +7,7 @@ import android.view.View;
 public class Ball extends View {
     private float posX = 0.02f;
     private float posY = 0.02f;
-    private float speedX, speedY;
+    private float speedX, speedY, horizontalCeiling, verticalCeiling;
 
 
     public Ball(Context context) {
@@ -37,11 +37,15 @@ public class Ball extends View {
         speedY += ay*t;
     }
 
-
     public float getPosX() {
         return posX;
     }
     public float getPosY() {
         return posY;
     }
+
+    public void setPosX(float x) {posX = x; }
+    public void setPosY(float y) {posY = y; }
+    public void setSpeedX(float x) {speedY = x; }
+    public void setSpeedY(float y) {speedY = y; }
 }

@@ -23,7 +23,7 @@ public class Game extends FrameLayout implements SensorEventListener {
     private SensorManager sensorManager;
     private int ballWidth, ballHeight;
     private static final float ballDiameter = 0.005f;
-    private float scaleHeightFromDpi, scaleWidthFromDpi, heightDpi, widthDpi, sensorY, sensorX, currentX, currentY;
+    private float scaleHeightFromDpi, scaleWidthFromDpi, heightDpi, widthDpi, sensorY, sensorX, currentX, currentY, horizontalCeiling, verticalCeiling;
     private long lastStamp;
 
     public Game(Context context) {
@@ -45,6 +45,26 @@ public class Game extends FrameLayout implements SensorEventListener {
         ball.setLayerType(LAYER_TYPE_HARDWARE, null);
         addView(ball, new ViewGroup.LayoutParams(ballWidth, ballHeight));
     }
+    public void ceilingCollisions() {
+        final float xmax = horizontalCeiling;
+        final float ymax = verticalCeiling;
+        final float x = ball.getPosX();
+        final float y = ball.getPosY();
+        if (x > xmax) {
+            ball.setPosX(xmax);
+            ball.setSpeedX(0);
+        } else if (x < -xmax) {
+            ball.setPosX(-xmax);
+            ball.setSpeedX(0);
+        }
+        if (y > ymax) {
+            ball.setPosY(ymax);
+            ball.setSpeedY(0);
+        } else if (y < -ymax) {
+            ball.setPosY(-ymax);
+            ball.setSpeedY(0);
+        }
+    }
 
 
     public void updateBall(float x, float y, long stamp) {
@@ -54,6 +74,8 @@ public class Game extends FrameLayout implements SensorEventListener {
             ball.computePosition(x,y,t);
         }
         lastStamp = st;
+
+        ceilingCollisions();
     }
 
     public float getPosX() {
@@ -105,6 +127,14 @@ public class Game extends FrameLayout implements SensorEventListener {
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        currentX = (w - ballWidth) * 0.5f;
+        currentY = (h - ballHeight) * 0.5f;
+        horizontalCeiling = ((w / scaleWidthFromDpi - ballDiameter) * 0.5f);
+        verticalCeiling = ((h / scaleHeightFromDpi - ballDiameter) * 0.5f);
     }
 
     public void stopGame() {
