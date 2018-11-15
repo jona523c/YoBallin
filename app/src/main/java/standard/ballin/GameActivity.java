@@ -61,5 +61,11 @@ public class GameActivity extends FragmentActivity {
         newFragment.show(getSupportFragmentManager(), "finishline");
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
 
+        game.stopGame();
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    }
 }
