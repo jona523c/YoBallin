@@ -10,7 +10,7 @@ import android.view.View;
  */
 public class Ball extends View {
     private float posX = -0.006f;
-    private float posY = -0.04f;
+    private float posY = -0.03f;
     private float speedX, speedY;
 
 

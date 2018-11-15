@@ -2,26 +2,34 @@ package standard.ballin;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.support.constraint.ConstraintLayout;
+import android.support.constraint.ConstraintSet;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.Display;
 import android.view.Surface;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import static android.content.Context.SENSOR_SERVICE;
 
 // This is the game class.
-public class Game extends FrameLayout implements SensorEventListener {
+public class Game extends ConstraintLayout implements SensorEventListener {
     private Sensor accelerometer;
     private Ball ball;
+    private ImageView header;
     private Display display;
     private SensorManager sensorManager;
     private int ballWidth, ballHeight;
@@ -33,11 +41,23 @@ public class Game extends FrameLayout implements SensorEventListener {
         super(context);
         sensorManager = (SensorManager) context.getSystemService(SENSOR_SERVICE);
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        header = new ImageView(getContext());
+        header.setImageResource(R.drawable.header);
+        LayoutParams layout = new LayoutParams(LayoutParams.WRAP_CONTENT, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 85, getResources().getDisplayMetrics()));
+        layout.setMargins(layout.leftMargin, layout.topMargin, layout.rightMargin, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics()));
+        header.setLayoutParams(layout);
+        header.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        ConstraintLayout constraintLayout = this;
+        ConstraintSet set = new ConstraintSet();
+        constraintLayout.addView(header,0);
+
+
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
         display = ((Activity) context).getWindowManager().getDefaultDisplay();
         ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         ball = new Ball(getContext());
+        header = findViewById(R.id.imageView);
         widthDpi = displayMetrics.xdpi;
         heightDpi = displayMetrics.ydpi;
         scaleHeightFromDpi = heightDpi / 0.0254f;
@@ -48,6 +68,8 @@ public class Game extends FrameLayout implements SensorEventListener {
         ball.setLayerType(LAYER_TYPE_HARDWARE, null);
         addView(ball, new ViewGroup.LayoutParams(ballWidth, ballHeight));
     }
+
+
     public void ceilingCollisions() {
         final float xmax = horizontalCeiling;
         final float ymax = verticalCeiling;
@@ -99,6 +121,7 @@ public class Game extends FrameLayout implements SensorEventListener {
         // TODO graphical finishline instead of just green finishline.
         Rect rect = new Rect(getLeft(), getHeight()-100, getWidth(), getHeight());
         canvas.drawRect(rect, paint);
+
         if(rect.contains((int) ball.getTranslationX(), (int) ball.getTranslationY())) {
             stopGame();
             finishDialog();
