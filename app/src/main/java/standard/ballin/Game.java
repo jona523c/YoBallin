@@ -95,6 +95,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         pause.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                stopGame();
                 ((GameActivity) getContext()).pauseDialog();
             }
         });
