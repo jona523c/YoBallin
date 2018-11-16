@@ -68,9 +68,14 @@ public class GameActivity extends FragmentActivity {
         game.stopGame();
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
-    public void confirmDialog() {
+    public void finishDialog() {
         FinishDialog pause = new FinishDialog();
         pause.showDialog(this);
+    }
+
+    public void defeatDialog() {
+        DefeatDialog defeat = new DefeatDialog();
+        defeat.showDialog(this);
     }
 
     @Override

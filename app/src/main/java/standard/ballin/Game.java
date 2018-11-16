@@ -96,11 +96,6 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         constraintLayout.addView(restart,0);
     }
 
-    private void createLevel() {
-
-    }
-
-
     public void ceilingCollisions() {
         final float xmax = horizontalCeiling;
         final float ymax = verticalCeiling;
@@ -134,7 +129,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
     }
 
     private void finishDialog() {
-        ((GameActivity) getContext()).confirmDialog();
+        ((GameActivity) getContext()).finishDialog();
     }
 
     public float getPosX() {
@@ -178,7 +173,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         }
         if(intersects(ball, rectWall)) {
             stopGame();
-            finishDialog();
+            defeatDialog();
             return;
         }
         super.onDraw(canvas);
@@ -197,6 +192,10 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         ball.setTranslationX(x);
         ball.setTranslationY(y);
         invalidate();
+    }
+
+    private void defeatDialog() {
+        ((GameActivity) getContext()).defeatDialog();
     }
 
     @Override
