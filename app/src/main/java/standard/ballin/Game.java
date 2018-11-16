@@ -92,6 +92,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         pause = new ImageView(getContext());
         pause.setImageResource(R.mipmap.settings);
         pause.setId(R.id.pause_button);
+        pause.setScaleType(ImageView.ScaleType.FIT_END);
         pause.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,8 +108,9 @@ public class Game extends ConstraintLayout implements SensorEventListener {
 
         ConstraintSet set = new ConstraintSet();
         set.clone(this);
-        set.setVerticalBias(R.id.pause_button, 1);
-        set.connect(pause.getId(), ConstraintSet.LEFT, restart.getId(), ConstraintSet.RIGHT, (int)  (0.046*scaleWidthFromDpi));
+        set.connect(pause.getId(),ConstraintSet.LEFT,ConstraintSet.PARENT_ID,ConstraintSet.LEFT,0);
+        set.connect(pause.getId(),ConstraintSet.RIGHT,ConstraintSet.PARENT_ID,ConstraintSet.RIGHT,0);
+        set.setHorizontalBias(pause.getId(),1);
         set.applyTo(this);
 
     }
