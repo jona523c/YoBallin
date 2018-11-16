@@ -221,6 +221,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         if(sensor.getType() != Sensor.TYPE_ACCELEROMETER) return;
 
         // sensor data recording
+        if(getDisplay()==null) return;
         if(getDisplay().getRotation()!= Surface.ROTATION_0) return;
         sensorY = event.values[1];
         sensorX = event.values[0];
