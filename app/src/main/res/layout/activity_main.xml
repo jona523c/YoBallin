@@ -6,16 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/editText"
+    <TextView
         android:layout_width="299dp"
         android:layout_height="97dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        android:background="@color/secondary_text_material_light"
         android:ems="10"
-        android:inputType="text"
         android:lineSpacingExtra="8sp"
         android:selectAllOnFocus="false"
         android:shadowColor="@android:color/black"
@@ -28,23 +27,23 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         android:textSize="70sp"
         android:textStyle="bold"
-        android:enabled="false"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/play_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.433"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:textColor="@android:color/white" />
 
     <View
-        android:id="@+id/view"
-        android:layout_width="290dp"
+        android:id="@+id/white_box"
+        android:layout_width="287dp"
         android:layout_height="67dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
-        android:background="@android:color/white"
+        android:background="@drawable/white_box"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,25 +53,19 @@
         app:layout_constraintVertical_bias="0.861" />
 
     <Button
-        android:id="@+id/button"
-        style="@style/BallinTheme"
+        android:id="@+id/play_button"
         android:layout_width="290dp"
         android:layout_height="67dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
-        android:background="@color/primary_material_dark_1"
-        android:elevation="24dp"
+        android:background="@drawable/play_button"
         android:onClick="playButton"
-        android:shadowColor="@android:color/black"
-        android:shadowDx="2"
-        android:shadowDy="2"
-        android:shadowRadius="5"
         android:text="@string/button_play"
         android:textColor="@android:color/white"
         android:textSize="50sp"
-        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintBottom_toTopOf="@+id/white_box"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.442"
         app:layout_constraintStart_toStartOf="parent"
@@ -90,8 +83,8 @@
         android:src="@drawable/sound_toggle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/settingsView"
-        app:layout_constraintHorizontal_bias="0.166"
-        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintHorizontal_bias="0.122"
+        app:layout_constraintStart_toStartOf="@+id/white_box"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.846" />
 
@@ -100,12 +93,42 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="36dp"
+        android:layout_marginEnd="28dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="@+id/white_box"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.846"
         app:srcCompat="@mipmap/settings" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="2dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="#191919"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/white_box"
+        app:layout_constraintEnd_toStartOf="@+id/settingsView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/soundView"
+        app:layout_constraintTop_toTopOf="@+id/white_box"
+        app:layout_constraintVertical_bias="0.428" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="2dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="#191919"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/white_box"
+        app:layout_constraintEnd_toStartOf="@+id/settingsView"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/soundView"
+        app:layout_constraintTop_toTopOf="@+id/white_box"
+        app:layout_constraintVertical_bias="0.428" />
 
 </android.support.constraint.ConstraintLayout>
