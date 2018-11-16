@@ -36,6 +36,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
     private Display display;
     private Canvas canvas;
     private Rect rect;
+    private LevelStrategy levelStrategy;
     private Paint paint, paintWall;
     private SensorManager sensorManager;
     private int ballWidth, ballHeight;
@@ -44,8 +45,9 @@ public class Game extends ConstraintLayout implements SensorEventListener {
     private float scaleHeightFromDpi, scaleWidthFromDpi, heightDpi, widthDpi, sensorY, sensorX, currentX, currentY, horizontalCeiling, verticalCeiling;
     private long lastStamp;
 
-    public Game(Context context) {
+    public Game(Context context, LevelStrategy levelStrategy) {
         super(context);
+        this.levelStrategy = levelStrategy;
         sensorManager = (SensorManager) context.getSystemService(SENSOR_SERVICE);
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
@@ -165,8 +167,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         // TODO graphical finishline instead of just green finishline.
         rect = new Rect(getLeft(), getHeight()- (int) (0.0055*scaleHeightFromDpi), getWidth(), getHeight());
         canvas.drawRect(rect, paint);
-        LevelStrategy level = new Level1Strategy();
-        Wall w = level.getWall();
+        Wall w = levelStrategy.getWall();
         Rect rectWall = new Rect(w.getPosX(), w.getPosY(), w.getWallWidth()+w.getPosX(), w.getWallHeight()+w.getPosY());
         canvas.drawRect(rectWall, paintWall);
 
@@ -180,11 +181,6 @@ public class Game extends ConstraintLayout implements SensorEventListener {
             finishDialog();
             return;
         }
-        /*if(ball.getTranslationX()>w.getPosX() && ball.getTranslationY()>w.getPosY()) {
-            stopGame();
-            finishDialog();
-            return;
-        }*/
         super.onDraw(canvas);
         final long now = System.currentTimeMillis();
         final float sx = sensorX;

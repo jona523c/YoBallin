@@ -6,10 +6,14 @@ import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.WindowManager;
 
+import standard.ballin.levelstrategies.Level1Strategy;
+import standard.ballin.levelstrategies.LevelStrategy;
+
 public class GameActivity extends FragmentActivity {
     private Game game;
     private SensorManager sensorManager;
     private WindowManager windowManager;
+    private LevelStrategy levelStrategy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,8 +24,17 @@ public class GameActivity extends FragmentActivity {
         windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        switch(getIntent().getIntExtra("selectedLevel", 0)) {
+            case 1: {
+                levelStrategy = new Level1Strategy();
+                break;
+            }
 
-        game = new Game(this);
+            default: {
+                break;
+            }
+        }
+        game = new Game(this, levelStrategy);
 
         //TODO Set background of game
         game.setBackgroundResource(R.drawable.ic_launcher_background);
