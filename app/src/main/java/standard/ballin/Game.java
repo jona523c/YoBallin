@@ -75,7 +75,6 @@ public class Game extends ConstraintLayout implements SensorEventListener {
     }
 
     private void setupLayout() {
-
         header = new ImageView(getContext());
         header.setId(R.id.header);
         header.setImageResource(R.drawable.header);
@@ -89,16 +88,22 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         restart.setId(R.id.restart_button);
         LayoutParams layoutRestart = new LayoutParams((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics()), (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics()));
         restart.setLayoutParams(layoutRestart);
-        // TODO: finish the button
+
         pause = new ImageView(getContext());
         pause.setImageResource(R.mipmap.settings);
         pause.setId(R.id.pause_button);
+        pause.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stopGame();
+                ((GameActivity) getContext()).pauseDialog();
+            }
+        });
         LayoutParams layoutPause = new LayoutParams((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics()), (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics()));
         pause.setLayoutParams(layoutPause);
         this.addView(header,0);
         this.addView(restart,1);
         this.addView(pause, 2);
-
 
         ConstraintSet set = new ConstraintSet();
         set.clone(this);
