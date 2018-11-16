@@ -16,7 +16,8 @@ public class GameActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
 
@@ -66,6 +67,7 @@ public class GameActivity extends FragmentActivity {
         super.onDestroy();
 
         game.stopGame();
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 }
