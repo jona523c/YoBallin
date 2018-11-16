@@ -16,6 +16,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
+import android.support.constraint.solver.widgets.Rectangle;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Display;
@@ -23,7 +24,11 @@ import android.view.Surface;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import standard.ballin.levelstrategies.Level1Strategy;
+import standard.ballin.levelstrategies.LevelStrategy;
+
 import static android.content.Context.SENSOR_SERVICE;
+import static java.lang.StrictMath.abs;
 
 // This is the game class.
 public class Game extends ConstraintLayout implements SensorEventListener {
@@ -31,8 +36,12 @@ public class Game extends ConstraintLayout implements SensorEventListener {
     private Ball ball;
     private ImageView header;
     private Display display;
+    private Canvas canvas;
+    private Rect rect;
+    private Paint paint, paintWall;
     private SensorManager sensorManager;
     private int ballWidth, ballHeight;
+    private float scale = getResources().getDisplayMetrics().density;
     private static final float ballDiameter = 0.005f;
     private float scaleHeightFromDpi, scaleWidthFromDpi, heightDpi, widthDpi, sensorY, sensorX, currentX, currentY, horizontalCeiling, verticalCeiling;
     private long lastStamp;
@@ -58,6 +67,11 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         ball.setBackgroundResource(R.drawable.header);
         ball.setLayerType(LAYER_TYPE_HARDWARE, null);
         addView(ball, new ViewGroup.LayoutParams(ballWidth, ballHeight));
+
+        paint = new Paint();
+        paint.setColor(Color.GREEN);
+        paintWall = new Paint();
+        paintWall.setColor(Color.GRAY);
     }
 
     private void setupLayout() {
@@ -70,6 +84,10 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         ConstraintLayout constraintLayout = this;
         ConstraintSet set = new ConstraintSet();
         constraintLayout.addView(header,0);
+    }
+
+    private void createLevel() {
+
     }
 
 
@@ -118,18 +136,48 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         return ball.getPosY();
     }
 
+    public boolean intersects(Ball ball, Rect rect) {
+        float circleX = abs((ball.getTranslationX()+ballWidth/2) - rect.centerX());
+        float circleY = abs((ball.getTranslationY()+ballHeight/2) - rect.centerY());
+
+        if (circleX > (rect.width()/2 + ballWidth/2)) { return false; }
+        if (circleY > (rect.height()/2 + ballHeight/2)) { return false; }
+
+        if (circleX <= (rect.width()/2)) { return true; }
+        if (circleY <= (rect.height()/2)) { return true; }
+
+        float cornerDistance_sq = (circleX - rect.width()/2)*(circleX - rect.width()/2) +
+                (circleY - rect.height()/2)*(circleY - rect.height()/2);
+
+        return (cornerDistance_sq <= (ballWidth) || cornerDistance_sq <= (ballHeight));
+    }
+
     public void onDraw(Canvas canvas) {
-        Paint paint = new Paint();
-        paint.setColor(Color.GREEN);
+        this.canvas = canvas;
+        canvas.save();
         // TODO graphical finishline instead of just green finishline.
-        Rect rect = new Rect(getLeft(), getHeight()-100, getWidth(), getHeight());
+        rect = new Rect(getLeft(), getHeight()- (int) (0.0055*scaleHeightFromDpi), getWidth(), getHeight());
         canvas.drawRect(rect, paint);
+        LevelStrategy level = new Level1Strategy();
+        Wall w = level.getWall();
+        Rect rectWall = new Rect(w.getPosX(), w.getPosY(), w.getWallWidth()+w.getPosX(), w.getWallHeight()+w.getPosY());
+        canvas.drawRect(rectWall, paintWall);
 
         if(rect.contains((int) ball.getTranslationX(), (int) ball.getTranslationY())) {
             stopGame();
             finishDialog();
             return;
         }
+        if(intersects(ball, rectWall)) {
+            stopGame();
+            finishDialog();
+            return;
+        }
+        /*if(ball.getTranslationX()>w.getPosX() && ball.getTranslationY()>w.getPosY()) {
+            stopGame();
+            finishDialog();
+            return;
+        }*/
         super.onDraw(canvas);
         final long now = System.currentTimeMillis();
         final float sx = sensorX;
