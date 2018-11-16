@@ -50,15 +50,16 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         this.levelStrategy = levelStrategy;
         sensorManager = (SensorManager) context.getSystemService(SENSOR_SERVICE);
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-
-        setupLayout();
-
         DisplayMetrics displayMetrics = new DisplayMetrics();
         display = ((Activity) context).getWindowManager().getDefaultDisplay();
         ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         ball = new Ball(getContext());
         widthDpi = displayMetrics.xdpi;
         heightDpi = displayMetrics.ydpi;
+        scaleHeightFromDpi = heightDpi / 0.0254f;
+        scaleWidthFromDpi = widthDpi / 0.0254f;
+        setupLayout();
+
         scaleHeightFromDpi = heightDpi / 0.0254f;
         scaleWidthFromDpi = widthDpi / 0.0254f;
         ballWidth =  (int) (ballDiameter * scaleWidthFromDpi+ 0.5f);
@@ -86,14 +87,25 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         restart = new ImageView(getContext());
         restart.setImageResource(R.mipmap.sound_toggle_off);
         restart.setId(R.id.restart_button);
-        LayoutParams layoutRestart = new LayoutParams((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 60, getResources().getDisplayMetrics()), (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 60, getResources().getDisplayMetrics()));
+        LayoutParams layoutRestart = new LayoutParams((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics()), (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics()));
         restart.setLayoutParams(layoutRestart);
         // TODO: finish the button
+        pause = new ImageView(getContext());
+        pause.setImageResource(R.mipmap.settings);
+        pause.setId(R.id.pause_button);
+        LayoutParams layoutPause = new LayoutParams((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics()), (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics()));
+        pause.setLayoutParams(layoutPause);
+        this.addView(header,0);
+        this.addView(restart,1);
+        this.addView(pause, 2);
 
-        ConstraintLayout constraintLayout = this;
+
         ConstraintSet set = new ConstraintSet();
-        constraintLayout.addView(header,0);
-        constraintLayout.addView(restart,1);
+        set.clone(this);
+        set.setVerticalBias(R.id.pause_button, 1);
+        set.connect(pause.getId(), ConstraintSet.LEFT, restart.getId(), ConstraintSet.RIGHT, (int)  (0.046*scaleWidthFromDpi));
+        set.applyTo(this);
+
     }
 
     public void ceilingCollisions() {
