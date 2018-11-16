@@ -53,9 +53,6 @@ public class Game extends ConstraintLayout implements SensorEventListener {
 
         setupLayout();
 
-        header = findViewById(R.id.header);
-        restart = findViewById(R.id.restart_button);
-
         DisplayMetrics displayMetrics = new DisplayMetrics();
         display = ((Activity) context).getWindowManager().getDefaultDisplay();
         ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -77,6 +74,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
     }
 
     private void setupLayout() {
+
         header = new ImageView(getContext());
         header.setId(R.id.header);
         header.setImageResource(R.drawable.header);
@@ -88,12 +86,14 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         restart = new ImageView(getContext());
         restart.setImageResource(R.mipmap.sound_toggle_off);
         restart.setId(R.id.restart_button);
+        LayoutParams layoutRestart = new LayoutParams((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 60, getResources().getDisplayMetrics()), (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 60, getResources().getDisplayMetrics()));
+        restart.setLayoutParams(layoutRestart);
         // TODO: finish the button
 
         ConstraintLayout constraintLayout = this;
         ConstraintSet set = new ConstraintSet();
         constraintLayout.addView(header,0);
-        constraintLayout.addView(restart,0);
+        constraintLayout.addView(restart,1);
     }
 
     public void ceilingCollisions() {
