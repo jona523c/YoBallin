@@ -1,10 +1,7 @@
 package standard.ballin;
 
 import android.app.*;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.view.*;
 import android.widget.*;
 
@@ -13,7 +10,7 @@ public class FinishDialog {
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
-        dialog.setContentView(R.layout.pause_dialog);
+        dialog.setContentView(R.layout.finish_dialog);
 
         Button nextButton = (Button) dialog.findViewById(R.id.next_button);
         nextButton.setOnClickListener(new View.OnClickListener() {
