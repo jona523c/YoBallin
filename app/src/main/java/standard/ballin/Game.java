@@ -19,10 +19,8 @@ import android.support.constraint.ConstraintSet;
 import android.support.constraint.solver.widgets.Rectangle;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
-import android.view.Display;
-import android.view.Surface;
-import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.view.*;
+import android.widget.*;
 
 import standard.ballin.levelstrategies.Level1Strategy;
 import standard.ballin.levelstrategies.LevelStrategy;
@@ -34,7 +32,7 @@ import static java.lang.StrictMath.abs;
 public class Game extends ConstraintLayout implements SensorEventListener {
     private Sensor accelerometer;
     private Ball ball;
-    private ImageView header;
+    private ImageView header, restart, pause;
     private Display display;
     private Canvas canvas;
     private Rect rect;
@@ -53,11 +51,13 @@ public class Game extends ConstraintLayout implements SensorEventListener {
 
         setupLayout();
 
+        header = findViewById(R.id.header);
+        restart = findViewById(R.id.restart_button);
+
         DisplayMetrics displayMetrics = new DisplayMetrics();
         display = ((Activity) context).getWindowManager().getDefaultDisplay();
         ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         ball = new Ball(getContext());
-        header = findViewById(R.id.imageView);
         widthDpi = displayMetrics.xdpi;
         heightDpi = displayMetrics.ydpi;
         scaleHeightFromDpi = heightDpi / 0.0254f;
@@ -76,14 +76,22 @@ public class Game extends ConstraintLayout implements SensorEventListener {
 
     private void setupLayout() {
         header = new ImageView(getContext());
+        header.setId(R.id.header);
         header.setImageResource(R.drawable.header);
         LayoutParams layout = new LayoutParams(LayoutParams.WRAP_CONTENT, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 85, getResources().getDisplayMetrics()));
         layout.setMargins(layout.leftMargin, layout.topMargin, layout.rightMargin, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics()));
         header.setLayoutParams(layout);
         header.setScaleType(ImageView.ScaleType.CENTER_CROP);
+
+        restart = new ImageView(getContext());
+        restart.setImageResource(R.mipmap.sound_toggle_off);
+        restart.setId(R.id.restart_button);
+        // TODO: finish the button
+
         ConstraintLayout constraintLayout = this;
         ConstraintSet set = new ConstraintSet();
         constraintLayout.addView(header,0);
+        constraintLayout.addView(restart,0);
     }
 
     private void createLevel() {
@@ -125,7 +133,6 @@ public class Game extends ConstraintLayout implements SensorEventListener {
 
     private void finishDialog() {
         ((GameActivity) getContext()).confirmDialog();
-
     }
 
     public float getPosX() {

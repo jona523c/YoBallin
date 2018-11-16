@@ -6,6 +6,7 @@
     <color name="primary_material_dark_1">#73421c</color>
     <color name="background_material_dark">#dfc27d</color>
     <color name="primary_dark_material_dark">#73421c</color>
+    <color name="primary_darker">#5a3417</color>
     <color name="accent_material_dark">#ffffff</color>
-    <color name="secondary_text_material_light">#8a000000</color>
+    <color name="secondary_text_material_light">#00000000</color>
 </resources>
