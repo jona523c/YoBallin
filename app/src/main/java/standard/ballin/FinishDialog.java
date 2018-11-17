@@ -12,7 +12,7 @@ public class FinishDialog {
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.finish_dialog);
 
-        Button nextButton = (Button) dialog.findViewById(R.id.next_button);
+        Button nextButton = (Button) dialog.findViewById(R.id.resume_button);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

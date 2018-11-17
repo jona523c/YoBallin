@@ -2,23 +2,14 @@ package standard.ballin;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Rect;
+import android.graphics.*;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
+import android.hardware.*;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.support.constraint.solver.widgets.Rectangle;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
+import android.util.*;
 import android.view.*;
 import android.widget.*;
 
@@ -88,6 +79,12 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         restart.setId(R.id.restart_button);
         LayoutParams layoutRestart = new LayoutParams((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics()), (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics()));
         restart.setLayoutParams(layoutRestart);
+        restart.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                restartGame();
+            }
+        });
 
         pause = new ImageView(getContext());
         pause.setImageResource(R.mipmap.settings);
@@ -248,5 +245,9 @@ public class Game extends ConstraintLayout implements SensorEventListener {
 
     public void startGame() {
         sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_GAME);
+    }
+
+    private void restartGame() {
+        //TODO: Restart
     }
 }

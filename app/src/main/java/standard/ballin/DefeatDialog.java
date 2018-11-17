@@ -12,15 +12,14 @@ public class DefeatDialog {
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
-        dialog.setContentView(R.layout.finish_dialog);
+        dialog.setContentView(R.layout.defeat_dialog);
 
-        Button nextButton = (Button) dialog.findViewById(R.id.next_button);
-        nextButton.setOnClickListener(new View.OnClickListener() {
+        Button restartButton = (Button) dialog.findViewById(R.id.restart_button);
+        restartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                Intent intent = new Intent (activity, LevelsActivity.class);
-                activity.startActivity(intent);
+                //TODO: Restart Game
             }
         });
 
