@@ -34,6 +34,11 @@ public class Game extends ConstraintLayout implements SensorEventListener {
     private static final float ballDiameter = 0.005f;
     private float scaleHeightFromDpi, scaleWidthFromDpi, heightDpi, widthDpi, sensorY, sensorX, currentX, currentY, horizontalCeiling, verticalCeiling;
     private long lastStamp;
+    private boolean sensorUpdatedEnabled = true;
+    private float tempX = -0.006f;
+    private float tempY = -0.03f;
+    private long start;
+    private long elapsed, before;
 
     public Game(Context context, LevelStrategy levelStrategy) {
         super(context);
@@ -211,21 +216,22 @@ public class Game extends ConstraintLayout implements SensorEventListener {
             defeatDialog();
             return;
         }
-        super.onDraw(canvas);
-        final long now = System.currentTimeMillis();
-        final float sx = sensorX;
-        final float sy = sensorY;
-
-        updateBall(sx, sy, now);
-
-        final float cx = currentX;
-        final float cy = currentY;
-        final float xs = scaleWidthFromDpi;
-        final float ys = scaleHeightFromDpi;
-        final float x = cx + getPosX() * xs;
-        final float y = cy + getPosY() * ys;
-        ball.setTranslationX(x);
-        ball.setTranslationY(y);
+            if(sensorUpdatedEnabled) {before = System.currentTimeMillis(); }
+            if(!sensorUpdatedEnabled) {
+                start = System.currentTimeMillis()-before;
+            }
+            final long now = System.currentTimeMillis()- start;
+            final float sx = sensorX;
+            final float sy = sensorY;
+            updateBall(sx, sy, now);
+            final float cx = currentX;
+            final float cy = currentY;
+            final float xs = scaleWidthFromDpi;
+            final float ys = scaleHeightFromDpi;
+            final float x = cx + getPosX() * xs;
+            final float y = cy + getPosY() * ys;
+            ball.setTranslationX(x);
+            ball.setTranslationY(y);
         invalidate();
     }
 
@@ -259,14 +265,18 @@ public class Game extends ConstraintLayout implements SensorEventListener {
     }
 
     public void stopGame() {
-        ball.setSpeedY(0);
-        ball.setSpeedX(0);
+        tempX = ball.getPosX();
+        tempY = ball.getPosY();
+        sensorUpdatedEnabled = false;
         sensorManager.unregisterListener(this);
-
     }
 
     public void startGame() {
+        ball.setPosX(tempX);
+        ball.setPosY(tempY);
         sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_GAME);
+        sensorUpdatedEnabled = true;
+        invalidate();
     }
 
     private void restartGame() {
