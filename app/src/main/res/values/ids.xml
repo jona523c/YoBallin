@@ -3,4 +3,5 @@
     <item name = "header" type="id"/>
     <item name = "restart_button" type="id"/>
     <item name = "pause_button" type="id"/>
+    <item name = "finishline" type="id"/>
 </resources>

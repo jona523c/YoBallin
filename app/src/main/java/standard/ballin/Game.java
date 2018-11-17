@@ -32,10 +32,9 @@ import static java.lang.StrictMath.abs;
 public class Game extends ConstraintLayout implements SensorEventListener {
     private Sensor accelerometer;
     private Ball ball;
-    private ImageView header, restart, pause;
+    private ImageView header, restart, pause, finishline;
     private Display display;
-    private Canvas canvas;
-    private Rect rect;
+    private Rect rect, rectWall;
     private LevelStrategy levelStrategy;
     private Paint paint, paintWall;
     private SensorManager sensorManager;
@@ -68,10 +67,21 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         ball.setLayerType(LAYER_TYPE_HARDWARE, null);
         addView(ball, new ViewGroup.LayoutParams(ballWidth, ballHeight));
 
+        initializeDrawings();
+    }
+
+    private void initializeDrawings() {
         paint = new Paint();
         paint.setColor(Color.GREEN);
         paintWall = new Paint();
         paintWall.setColor(Color.GRAY);
+
+        Wall w = levelStrategy.getWall();
+        rectWall = new Rect(w.getPosX(), w.getPosY(), w.getWallWidth()+w.getPosX(), w.getWallHeight()+w.getPosY());
+
+        // Cannot get ViewById yet for some reason.
+        rect = new Rect(finishline.getLeft(), finishline.getTop(), finishline.getRight() , finishline.getBottom());
+
     }
 
     private void setupLayout() {
@@ -102,15 +112,28 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         });
         LayoutParams layoutPause = new LayoutParams((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics()), (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics()));
         pause.setLayoutParams(layoutPause);
+
+        finishline = new ImageView(getContext());
+        finishline.setId(R.id.finishline);
+        finishline.setBackgroundColor(Color.GREEN);
+        LayoutParams layoutFinishline = new LayoutParams(LayoutParams.MATCH_PARENT, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 35, getResources().getDisplayMetrics()));
+        finishline.setLayoutParams(layoutFinishline);
+
+
         this.addView(header,0);
         this.addView(restart,1);
         this.addView(pause, 2);
-
+        this.addView(finishline, 3);
         ConstraintSet set = new ConstraintSet();
         set.clone(this);
         set.connect(pause.getId(),ConstraintSet.LEFT,ConstraintSet.PARENT_ID,ConstraintSet.LEFT,0);
         set.connect(pause.getId(),ConstraintSet.RIGHT,ConstraintSet.PARENT_ID,ConstraintSet.RIGHT,0);
         set.setHorizontalBias(pause.getId(),1);
+
+        set.connect(finishline.getId(),ConstraintSet.BOTTOM,ConstraintSet.PARENT_ID,ConstraintSet.BOTTOM,0);
+        set.connect(finishline.getId(),ConstraintSet.TOP,ConstraintSet.PARENT_ID,ConstraintSet.TOP,0);
+        set.setVerticalBias(finishline.getId(),1);
+
         set.applyTo(this);
 
     }
@@ -145,6 +168,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         lastStamp = stamp;
 
         ceilingCollisions();
+
     }
 
     private void finishDialog() {
@@ -176,13 +200,8 @@ public class Game extends ConstraintLayout implements SensorEventListener {
     }
 
     public void onDraw(Canvas canvas) {
-        this.canvas = canvas;
-        canvas.save();
         // TODO graphical finishline instead of just green finishline.
-        rect = new Rect(getLeft(), getHeight()- (int) (0.0055*scaleHeightFromDpi), getWidth(), getHeight());
-        canvas.drawRect(rect, paint);
-        Wall w = levelStrategy.getWall();
-        Rect rectWall = new Rect(w.getPosX(), w.getPosY(), w.getWallWidth()+w.getPosX(), w.getWallHeight()+w.getPosY());
+        rect = new Rect(getViewById(R.id.finishline).getLeft(), getViewById(R.id.finishline).getTop(), getViewById(R.id.finishline).getRight() , getViewById(R.id.finishline).getBottom());
         canvas.drawRect(rectWall, paintWall);
 
         if(rect.contains((int) ball.getTranslationX(), (int) ball.getTranslationY())) {
