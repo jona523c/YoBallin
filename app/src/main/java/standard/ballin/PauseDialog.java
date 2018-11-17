@@ -1,6 +1,7 @@
 package standard.ballin;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.view.View;
@@ -22,12 +23,12 @@ public class PauseDialog {
             }
         });
 
-        Button restartButton = (Button) dialog.findViewById(R.id.restart_button);
+        final Button restartButton = (Button) dialog.findViewById(R.id.restart_button);
         restartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Make a new dialog
-                // TODO: Restart
+                RestartDialog restartDialog = new RestartDialog();
+                restartDialog.showDialog(activity);
             }
         });
 

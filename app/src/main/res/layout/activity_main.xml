@@ -60,10 +60,10 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.451"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.861" />
+        app:layout_constraintVertical_bias="0.933" />
 
     <Button
         android:id="@+id/play_button"
@@ -80,7 +80,6 @@
         android:textSize="50sp"
         app:layout_constraintBottom_toTopOf="@+id/white_box"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.442"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
@@ -96,22 +95,22 @@
         android:src="@drawable/sound_toggle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/settingsView"
-        app:layout_constraintHorizontal_bias="0.005"
+        app:layout_constraintHorizontal_bias="0.062"
         app:layout_constraintStart_toStartOf="@+id/white_box"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.845" />
+        app:layout_constraintVertical_bias="0.914" />
 
     <ImageView
         android:id="@+id/settingsView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/white_box"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.845"
+        app:layout_constraintVertical_bias="0.914"
         app:srcCompat="@mipmap/settings" />
 
     <View
@@ -124,7 +123,7 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/white_box"
         app:layout_constraintEnd_toStartOf="@+id/settingsView"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.087"
         app:layout_constraintStart_toEndOf="@+id/soundView"
         app:layout_constraintTop_toTopOf="@+id/white_box"
         app:layout_constraintVertical_bias="0.428" />
@@ -139,7 +138,7 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/white_box"
         app:layout_constraintEnd_toStartOf="@+id/settingsView"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.893"
         app:layout_constraintStart_toEndOf="@+id/soundView"
         app:layout_constraintTop_toTopOf="@+id/white_box"
         app:layout_constraintVertical_bias="0.428" />
