@@ -8,7 +8,7 @@
     android:clipToPadding="false">
 
     <ImageView
-        android:id="@+id/logo"
+        android:id="@+id/header"
         android:layout_width="wrap_content"
         android:layout_height="85dp"
         android:layout_marginBottom="8dp"
