@@ -35,10 +35,8 @@ public class Game extends ConstraintLayout implements SensorEventListener {
     private float scaleHeightFromDpi, scaleWidthFromDpi, heightDpi, widthDpi, sensorY, sensorX, currentX, currentY, horizontalCeiling, verticalCeiling;
     private long lastStamp;
     private boolean sensorUpdatedEnabled = true;
-    private float tempX = -0.006f;
-    private float tempY = -0.03f;
     private long start;
-    private long elapsed, before;
+    private long before;
     private long now = System.currentTimeMillis();
 
     public Game(Context context, LevelStrategy levelStrategy) {
