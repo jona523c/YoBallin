@@ -70,8 +70,8 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         Wall w = levelStrategy.getWall();
         rectWall = new Rect(w.getPosX(), w.getPosY(), w.getWallWidth()+w.getPosX(), w.getWallHeight()+w.getPosY());
 
-        // Cannot get ViewById yet for some reason.
-        rect = new Rect(finishline.getLeft(), finishline.getTop(), finishline.getRight() , finishline.getBottom());
+        // Cannot get finishline yet for some reason.
+        //rect = new Rect(finishline.getLeft(), finishline.getTop(), finishline.getRight() , finishline.getBottom());
 
     }
 
@@ -259,7 +259,10 @@ public class Game extends ConstraintLayout implements SensorEventListener {
     }
 
     public void stopGame() {
+        ball.setSpeedY(0);
+        ball.setSpeedX(0);
         sensorManager.unregisterListener(this);
+
     }
 
     public void startGame() {
@@ -268,5 +271,9 @@ public class Game extends ConstraintLayout implements SensorEventListener {
 
     private void restartGame() {
         //TODO: Restart
+        ball.setPosX(-0.006f);
+        ball.setPosY(-0.03f);
+        ball.setSpeedX(0);
+        ball.setSpeedY(0);
     }
 }

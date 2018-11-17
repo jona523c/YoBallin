@@ -10,10 +10,14 @@ import standard.ballin.levelstrategies.Level1Strategy;
 import standard.ballin.levelstrategies.LevelStrategy;
 
 public class GameActivity extends FragmentActivity {
-    private Game game;
+    private static Game game;
     private SensorManager sensorManager;
     private WindowManager windowManager;
     private LevelStrategy levelStrategy;
+
+    public static Game getGame() {
+        return game;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +50,6 @@ public class GameActivity extends FragmentActivity {
         return windowManager;
     }
 
-    public void pauseButton(View view) {
-        // TODO implement pause Button
-    }
-    public void restartButton(View view) {
-        // TODO implement restart Button
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -76,6 +73,7 @@ public class GameActivity extends FragmentActivity {
     public void pauseDialog() {
         PauseDialog pause = new PauseDialog();
         pause.showDialog(this);
+
     }
 
     public void defeatDialog() {

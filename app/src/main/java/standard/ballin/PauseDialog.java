@@ -3,6 +3,7 @@ package standard.ballin;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.View;
 import android.view.Window;
@@ -16,9 +17,11 @@ public class PauseDialog {
         dialog.setContentView(R.layout.pause_dialog);
 
         Button resumeButton = (Button) dialog.findViewById(R.id.resume_button);
+
         resumeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                GameActivity.getGame().startGame();
                 dialog.dismiss();
             }
         });
