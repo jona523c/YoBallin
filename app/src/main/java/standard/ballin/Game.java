@@ -39,6 +39,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
     private float tempY = -0.03f;
     private long start;
     private long elapsed, before;
+    private long now = System.currentTimeMillis();
 
     public Game(Context context, LevelStrategy levelStrategy) {
         super(context);
@@ -216,11 +217,11 @@ public class Game extends ConstraintLayout implements SensorEventListener {
             defeatDialog();
             return;
         }
-            if(sensorUpdatedEnabled) {before = System.currentTimeMillis(); }
+            if(sensorUpdatedEnabled) {before = now; }
             if(!sensorUpdatedEnabled) {
-                start = System.currentTimeMillis()-before;
+               start = System.currentTimeMillis()-before;
             }
-            final long now = System.currentTimeMillis()- start;
+            now = System.currentTimeMillis()- start;
             final float sx = sensorX;
             final float sy = sensorY;
             updateBall(sx, sy, now);
@@ -265,18 +266,20 @@ public class Game extends ConstraintLayout implements SensorEventListener {
     }
 
     public void stopGame() {
-        tempX = ball.getPosX();
-        tempY = ball.getPosY();
+        //tempX = ball.getPosX();
+        //tempY = ball.getPosY();
         sensorUpdatedEnabled = false;
         sensorManager.unregisterListener(this);
+        start += System.currentTimeMillis()-before;
     }
 
     public void startGame() {
-        ball.setPosX(tempX);
-        ball.setPosY(tempY);
+        elapsed += start;
+        //ball.setPosX(tempX);
+        //ball.setPosY(tempY);
         sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_GAME);
         sensorUpdatedEnabled = true;
-        invalidate();
+        //invalidate();
     }
 
     private void restartGame() {
