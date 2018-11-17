@@ -9,12 +9,22 @@ import android.view.WindowManager;
 import standard.ballin.levelstrategies.Level1Strategy;
 import standard.ballin.levelstrategies.LevelStrategy;
 
+/**
+ * GameActivity class: activity that is opened when the game is launched.
+ *
+ * @author Frederik Nielsen
+ * Frederik Nielsen: Main auther.
+ */
 public class GameActivity extends FragmentActivity {
     private static Game game;
     private SensorManager sensorManager;
     private WindowManager windowManager;
     private LevelStrategy levelStrategy;
 
+    /**
+     * Gets the current game.
+     * @return current game
+     */
     public static Game getGame() {
         return game;
     }

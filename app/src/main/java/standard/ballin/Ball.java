@@ -7,11 +7,15 @@ import android.view.View;
 /**
  * This is the class which handles the ball. Its position and speed is contained.
  * new Position is computed taking its speed into account.
+ *
+ * @author Frederik Nielsen
+ * Frederik Nielsen: Main auther.
  */
 public class Ball extends View {
     private float posX = -0.006f;
     private float posY = -0.03f;
     private float speedX, speedY;
+
 
 
     public Ball(Context context) {
@@ -22,20 +26,22 @@ public class Ball extends View {
         super(context, attrs);
     }
 
+
     public Ball(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
+
 
     public Ball(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
     /**
+     * computePosition calculates the new position of the ball. Using the speed and acceleration of the ball.
      * @param x The measured (by the sensor) acceleration in x-axis
      * @param y The measured (by the sensor) acceleration in y-axis
      * @param t The time since last stamp
      *
-     * computePosition calculates the new position of the ball. Using the speed and acceleration of the ball.
      */
     public void computePosition(float x, float y, float t) {
         float ax = -x/5;

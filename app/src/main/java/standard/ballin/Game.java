@@ -19,7 +19,11 @@ import standard.ballin.levelstrategies.LevelStrategy;
 import static android.content.Context.SENSOR_SERVICE;
 import static java.lang.StrictMath.abs;
 
-// This is the game class.
+/**
+ *  Game class: The actual game, which is the content view when GameActivity is opened.
+ * @author Frederik Nielsen
+ * Frederik Nielsen: Main author
+ */
 public class Game extends ConstraintLayout implements SensorEventListener {
     private Sensor accelerometer;
     private Ball ball;
@@ -39,6 +43,11 @@ public class Game extends ConstraintLayout implements SensorEventListener {
     private long before;
     private long now = System.currentTimeMillis();
 
+    /**
+     * Initialize a game object, which contains the level that is selected.
+     * @param context
+     * @param levelStrategy
+     */
     public Game(Context context, LevelStrategy levelStrategy) {
         super(context);
         this.levelStrategy = levelStrategy;
@@ -65,6 +74,9 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         initializeDrawings();
     }
 
+    /**
+     * Initialize drawings, which doesn't change throughout the games lifecycle.
+     */
     private void initializeDrawings() {
         paint = new Paint();
         paint.setColor(Color.GREEN);
@@ -79,6 +91,9 @@ public class Game extends ConstraintLayout implements SensorEventListener {
 
     }
 
+    /**
+     * Setup the ConstraintLayout of Game, which contains ImageViews.
+     */
     private void setupLayout() {
         header = new ImageView(getContext());
         header.setId(R.id.header);
@@ -139,6 +154,9 @@ public class Game extends ConstraintLayout implements SensorEventListener {
 
     }
 
+    /**
+     * Checks if the ball collides with the ceiling.
+     */
     public void ceilingCollisions() {
         final float xmax = horizontalCeiling;
         final float ymax = verticalCeiling;
@@ -161,6 +179,12 @@ public class Game extends ConstraintLayout implements SensorEventListener {
     }
 
 
+    /**
+     * Updates the ball position and calls to see if ball is collided with the ceiling.
+     * @param x The measured (by the sensor) acceleration in x-axis
+     * @param y The measured (by the sensor) acceleration in y-axis
+     * @param stamp The time this update was requested
+     */
     public void updateBall(float x, float y, long stamp) {
         if(lastStamp != 0) {
             float t = (stamp - lastStamp) / 1000.f;
@@ -172,18 +196,35 @@ public class Game extends ConstraintLayout implements SensorEventListener {
 
     }
 
+    /**
+     *  Opens finishDialog
+     */
     private void finishDialog() {
         ((GameActivity) getContext()).finishDialog();
     }
 
+    /**
+     * Gets the balls X position.
+     * @return returns balls X position
+     */
     public float getPosX() {
         return ball.getPosX();
     }
 
+    /**
+     * Gets the balls Y position.
+     * @return returns balls Y position
+     */
     public float getPosY() {
         return ball.getPosY();
     }
 
+    /**
+     * Returns true if the ball intersects the given rectangle.
+     * @param ball The ball
+     * @param rect Rectangle to check intersection with ball
+     * @return true if ball intersects, false if not
+     */
     public boolean intersects(Ball ball, Rect rect) {
         float circleX = abs((ball.getTranslationX()+ballWidth/2) - rect.centerX());
         float circleY = abs((ball.getTranslationY()+ballHeight/2) - rect.centerY());
@@ -200,6 +241,10 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         return (cornerDistance_sq <= (ballWidth) || cornerDistance_sq <= (ballHeight));
     }
 
+    /**
+     * This draws the objects to the canvas and updates the ball position. Gets called everytime a view is repositioned on the screen.
+     * @param canvas The canvas object of the ConstraintLayout given by Android
+     */
     public void onDraw(Canvas canvas) {
         // TODO graphical finishline instead of just green finishline.
         rect = new Rect(getViewById(R.id.finishline).getLeft(), getViewById(R.id.finishline).getTop(), getViewById(R.id.finishline).getRight() , getViewById(R.id.finishline).getBottom());
@@ -234,10 +279,17 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         invalidate();
     }
 
+    /**
+     * Opens defeatDialog
+     */
     private void defeatDialog() {
         ((GameActivity) getContext()).defeatDialog();
     }
 
+    /**
+     * Called when there is a new sensor event.
+     * @param event The sensor event
+     */
     @Override
     public void onSensorChanged(SensorEvent event) {
         Sensor sensor = event.sensor;
@@ -250,11 +302,23 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         sensorX = event.values[0];
     }
 
+    /**
+     * Called when the accuracy of the registered sensor has changed.
+     * @param sensor The ID of the sensor being monitored
+     * @param accuracy The new accuracy of this sensor.
+     */
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
 
+    /**
+     * Called when the size of this view has changed.
+     * @param w Current width of this view
+     * @param h Current height of this view
+     * @param oldw Old width of this view
+     * @param oldh Old height of this view
+     */
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         currentX = (w - ballWidth) * 0.5f;
@@ -263,23 +327,27 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         verticalCeiling = ((h / scaleHeightFromDpi - ballDiameter) * 0.5f);
     }
 
+    /**
+     * Stops the Game by unregistering the listener and keeping track of time paused.
+     */
     public void stopGame() {
-        //tempX = ball.getPosX();
-        //tempY = ball.getPosY();
         sensorUpdatedEnabled = false;
         sensorManager.unregisterListener(this);
         start += System.currentTimeMillis()-before;
     }
 
+
+    /**
+     * Starts the game by registering the listener.
+     */
     public void startGame() {
-        elapsed += start;
-        //ball.setPosX(tempX);
-        //ball.setPosY(tempY);
         sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_GAME);
         sensorUpdatedEnabled = true;
-        //invalidate();
     }
 
+    /**
+     * Restarts the game.
+     */
     private void restartGame() {
         //TODO: Restart
         ball.setPosX(-0.006f);

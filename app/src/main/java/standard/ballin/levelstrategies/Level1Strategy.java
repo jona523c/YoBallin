@@ -1,14 +1,12 @@
 package standard.ballin.levelstrategies;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import java.util.ArrayList;
-
 import standard.ballin.Wall;
 
-import static java.lang.System.out;
-
+/**
+ * Implementation of level 1.
+ *
+ * @author Frederik Nielsen
+ */
 public class Level1Strategy implements LevelStrategy {
     private Wall wall;
 
