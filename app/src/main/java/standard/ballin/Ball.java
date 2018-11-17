@@ -14,7 +14,6 @@ import android.view.View;
 public class Ball extends View {
     private float posX = -0.006f;
     private float posY = -0.03f;
-    private float speedX, speedY;
 
 
 
@@ -40,18 +39,19 @@ public class Ball extends View {
      * computePosition calculates the new position of the ball. Using the speed and acceleration of the ball.
      * @param x The measured (by the sensor) acceleration in x-axis
      * @param y The measured (by the sensor) acceleration in y-axis
-     * @param t The time since last stamp
+     * @param t The time since last stamp (in sec)
      *
      */
     public void computePosition(float x, float y, float t) {
-        float ax = -x/5;
-        float ay = y/5;
 
-        posX += speedX * t + ax * t * t / 2;
-        posY += speedY * t + ax * t * t / 2;
+        //acceleration is modified to fit the game.
+        float ax = -x/200f;
+        float ay = y/200f;
 
-        speedX = ax*t;
-        speedY = ay*t;
+        //Calculated to fit speed of movement.
+        posX += ax*t;
+        posY += ay*t;
+
     }
 
     /**
@@ -77,14 +77,4 @@ public class Ball extends View {
      * @param y The new Y position of the ball.
      */
     public void setPosY(float y) {posY = y; }
-
-    /**
-     * @param x the new X speed of the ball.
-     */
-    public void setSpeedX(float x) {speedY = x; }
-
-    /**
-     * @param y the new Y speed of the ball.
-     */
-    public void setSpeedY(float y) {speedY = y; }
 }

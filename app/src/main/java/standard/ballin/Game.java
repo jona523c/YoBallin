@@ -35,7 +35,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
     private SensorManager sensorManager;
     private int ballWidth, ballHeight;
     private float scale = getResources().getDisplayMetrics().density;
-    private static final float ballDiameter = 0.005f;
+    private static final float ballDiameter = 0.004f;
     private float scaleHeightFromDpi, scaleWidthFromDpi, heightDpi, widthDpi, sensorY, sensorX, currentX, currentY, horizontalCeiling, verticalCeiling;
     private long lastStamp;
     private boolean sensorUpdatedEnabled = true;
@@ -59,14 +59,12 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         ball = new Ball(getContext());
         widthDpi = displayMetrics.xdpi;
         heightDpi = displayMetrics.ydpi;
-        scaleHeightFromDpi = heightDpi / 0.0254f;
-        scaleWidthFromDpi = widthDpi / 0.0254f;
         setupLayout();
 
-        scaleHeightFromDpi = heightDpi / 0.0254f;
-        scaleWidthFromDpi = widthDpi / 0.0254f;
-        ballWidth =  (int) (ballDiameter * scaleWidthFromDpi+ 0.5f);
-        ballHeight = (int) (ballDiameter * scaleHeightFromDpi + 0.5f);
+        scaleHeightFromDpi = heightDpi / 0.02f;
+        scaleWidthFromDpi = widthDpi / 0.02f;
+        ballWidth =  (int) (ballDiameter * scaleWidthFromDpi);
+        ballHeight = (int) (ballDiameter * scaleHeightFromDpi);
         ball.setBackgroundResource(R.drawable.header);
         ball.setLayerType(LAYER_TYPE_HARDWARE, null);
         addView(ball, new ViewGroup.LayoutParams(ballWidth, ballHeight));
@@ -164,17 +162,13 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         final float y = ball.getPosY();
         if (x > xmax) {
             ball.setPosX(xmax);
-            ball.setSpeedX(0);
         } else if (x < -xmax) {
             ball.setPosX(-xmax);
-            ball.setSpeedX(0);
         }
         if (y > ymax) {
             ball.setPosY(ymax);
-            ball.setSpeedY(0);
         } else if (y < -ymax) {
             ball.setPosY(-ymax);
-            ball.setSpeedY(0);
         }
     }
 
@@ -183,11 +177,11 @@ public class Game extends ConstraintLayout implements SensorEventListener {
      * Updates the ball position and calls to see if ball is collided with the ceiling.
      * @param x The measured (by the sensor) acceleration in x-axis
      * @param y The measured (by the sensor) acceleration in y-axis
-     * @param stamp The time this update was requested
+     * @param stamp The time this update was requested (in milliseconds)
      */
     public void updateBall(float x, float y, long stamp) {
         if(lastStamp != 0) {
-            float t = (stamp - lastStamp) / 1000.f;
+            float t = (stamp - lastStamp) / 1000f;
             ball.computePosition(x,y,t);
         }
         lastStamp = stamp;
@@ -235,8 +229,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         if (circleX <= (rect.width()/2)) { return true; }
         if (circleY <= (rect.height()/2)) { return true; }
 
-        float cornerDistance_sq = (circleX - rect.width()/2)*(circleX - rect.width()/2) +
-                (circleY - rect.height()/2)*(circleY - rect.height()/2);
+        float cornerDistance_sq = (circleX - rect.width()/2)*(circleX - rect.width()/2) + (circleY - rect.height()/2)*(circleY - rect.height()/2);
 
         return (cornerDistance_sq <= (ballWidth) || cornerDistance_sq <= (ballHeight));
     }
@@ -352,7 +345,5 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         //TODO: Restart
         ball.setPosX(-0.006f);
         ball.setPosY(-0.03f);
-        ball.setSpeedX(0);
-        ball.setSpeedY(0);
     }
 }
