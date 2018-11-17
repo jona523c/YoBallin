@@ -9,6 +9,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.*;
 
+
+/**
+ * Activity class for Main Menu
+ * @author Jonas Madsen
+ */
 public class MainActivity extends AppCompatActivity {
     ImageView soundButton;
     ImageView settingsButton;
@@ -59,13 +64,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        // Release mediaplayer to free memory
+        // Release mediaPlayer to free memory
         MusicPlay.getMediaPlayer().release();
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onDestroy();
     }
 
-    /** Called when user clicks play button, starts the Levels screen **/
+    /**
+     * Called when user clicks play button, starts the Levels screen
+     * @param view
+     */
     public void playButton(View view) {
         Intent intent = new Intent (this, LevelsActivity.class);
         startActivity(intent);

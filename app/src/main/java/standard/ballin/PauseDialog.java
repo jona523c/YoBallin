@@ -9,6 +9,11 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 
+
+/**
+ * Dialog class for the pause menu.
+ * @author Jonas Madsen
+ */
 public class PauseDialog {
     public void showDialog(final Activity activity){
         final Dialog dialog = new Dialog(activity);

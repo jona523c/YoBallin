@@ -8,6 +8,10 @@ import android.view.WindowManager;
 import android.widget.SeekBar;
 import android.widget.Switch;
 
+/**
+ * Activity class for Settings menu
+ * @author Jonas Madsen
+ */
 public class SettingsActivity extends AppCompatActivity {
     Switch musicSwitch;
     SeekBar musicBar;
@@ -58,7 +62,10 @@ public class SettingsActivity extends AppCompatActivity {
         });
     }
 
-    /** Called when user clicks the back-arrow, returns to last screen **/
+    /**
+     * Called when user clicks the back-arrow, returns to last screen
+     * @param view
+     */
     public void backButton(View view) {
         finish();
     }

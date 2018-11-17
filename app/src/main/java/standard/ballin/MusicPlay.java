@@ -4,12 +4,18 @@ import android.content.Context;
 import android.media.*;
 
 
+/**
+ * Class for creating a global MediaPlayer to be turned on and off in different activities
+ * @author Jonas Madsen
+ */
 public class MusicPlay {
     public static MediaPlayer mediaPlayer;
     //private static SoundPool soundPool;
     public static boolean isPlayingAudio = false;
 
-    // Creates a new mediaPlayer to play audio and starts it.
+    /**
+     * Creates a MediaPlayer for audio and starts playing it
+     */
     public static void playAudio(Context c, int id) {
         mediaPlayer = MediaPlayer.create(c, id);
         //soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 1);
@@ -24,19 +30,27 @@ public class MusicPlay {
         }
     }
 
-    // Pauses the audio
+
+    /**
+     * Pauses the audio
+     */
     public static void pauseAudio() {
         isPlayingAudio = false;
         mediaPlayer.pause();
     }
 
-    // Resumes the audio
+
+    /**
+     * Resumes the audio
+     */
     public static void resumeAudio() {
         isPlayingAudio = true;
         mediaPlayer.start();
     }
 
-    // Returns whether music is playing or not
+    /**
+     * Returns if audio is playing or not
+     */
     public static boolean isPlaying() {
         return isPlayingAudio;
     }

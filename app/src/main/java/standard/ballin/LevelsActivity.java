@@ -10,6 +10,10 @@ import android.view.WindowManager;
 import standard.ballin.levelstrategies.Level1Strategy;
 import standard.ballin.levelstrategies.LevelStrategy;
 
+/**
+ * Activity class for Levels menu
+ * @author Jonas Madsen
+ */
 public class LevelsActivity extends AppCompatActivity {
 
     @Override
@@ -20,12 +24,18 @@ public class LevelsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_levels);
     }
 
-    /** **/
+    /**
+     * Returns to the former activity
+     * @param view
+     */
     public void backButton(View view) {
         finish();
     }
 
-    /** **/
+    /**
+     * Starts the Game activity
+     * @param view
+     */
     public void levelButton(View view) {
         Intent intent = new Intent (this, GameActivity.class);
         intent.putExtra("selectedLevel", 1);

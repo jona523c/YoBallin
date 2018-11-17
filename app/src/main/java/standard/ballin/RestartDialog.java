@@ -8,21 +8,36 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 
+/**
+ * Dialog class for the restart confirmation.
+ * @author Jonas Madsen
+ */
 public class RestartDialog {
+    /**
+     * Called to create and show the dialog
+     * @param activity
+     */
     public void showDialog(final Activity activity) {
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.restart_dialog);
 
+        // Removes the dialog, removes the old activity and starts a new identical one.
         Button yesButton = (Button) dialog.findViewById(R.id.yes_button);
         yesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: Restart
+                // TODO: Should be done differently at a later stage
+                dialog.dismiss();
+                Intent intent = new Intent (activity, GameActivity.class);
+                intent.putExtra("selectedLevel", 1);
+                activity.finish();
+                activity.startActivity(intent);
             }
         });
 
+        // Dismiss the dialog
         Button noButton = (Button) dialog.findViewById(R.id.no_button);
         noButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -5,6 +5,10 @@ import android.content.Intent;
 import android.view.*;
 import android.widget.*;
 
+/**
+ * Dialog class for the victory.
+ * @author Jonas Madsen
+ */
 public class FinishDialog {
     public void showDialog(final Activity activity){
         final Dialog dialog = new Dialog(activity);
