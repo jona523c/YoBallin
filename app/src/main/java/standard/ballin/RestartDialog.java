@@ -16,6 +16,7 @@ public class RestartDialog {
     /**
      * Called to create and show the dialog
      * @param activity
+     * @param oldDialog the dialog that prompted this dialog
      */
     public void showDialog(final Activity activity, final Dialog oldDialog) {
         final Dialog dialog = new Dialog(activity);

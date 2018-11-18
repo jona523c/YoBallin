@@ -31,8 +31,7 @@ public class FinishDialog {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                Intent intent = new Intent (activity, MainActivity.class);
-                activity.startActivity(intent);
+                activity.finish();
             }
         });
 
