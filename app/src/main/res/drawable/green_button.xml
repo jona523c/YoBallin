@@ -2,29 +2,41 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <layer-list>
-            <item android:left="5dp" android:top="5dp">
+            <item>
+                <shape>
+                    <corners android:radius="1dp" />
+                    <solid android:color="@color/black" />
+                    <padding
+                        android:bottom="1dp"
+                        android:left="1dp"
+                        android:right="1dp"
+                        android:top="1dp" />
+                </shape>
+            </item>
+            <item
+                android:bottom="5dp"
+                android:right="5dp">
                 <shape>
                     <corners android:radius="3dp" />
                     <gradient
                         android:angle="315"
-                        android:endColor="#191919"
-                        android:startColor="#67D476"
+                        android:endColor="@color/dark_grey"
+                        android:startColor="@color/green"
                         android:type="radial"
                         android:centerX="0.55"
                         android:centerY="0"
                         android:gradientRadius="300"/>
-                    <padding android:bottom="1dp"
+                    <padding
+                        android:bottom="2dp"
                         android:left="0dp"
-                        android:right="3dp"
+                        android:right="2dp"
                         android:top="0dp" />
                 </shape>
             </item>
-            <item
-                android:bottom="2dp"
-                android:left="3dp">
+            <item>
                 <shape>
                     <corners android:radius="1dp" />
-                    <solid android:color="#67D476" />
+                    <solid android:color="@color/green" />
                 </shape>
             </item>
         </layer-list>

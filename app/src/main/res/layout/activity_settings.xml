@@ -7,34 +7,6 @@
     android:layout_height="match_parent"
     android:clipToPadding="false">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="159dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="MUSIC"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.014" />
-
-    <SeekBar
-        android:id="@+id/musicBar"
-        android:layout_width="195dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar"
-        app:layout_constraintVertical_bias="0.0" />
-
     <ImageView
         android:id="@+id/header"
         android:layout_width="wrap_content"
@@ -48,22 +20,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="60dp"
-        android:layout_height="46dp"
+    <ImageView
+        android:id="@+id/backView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@color/colorAccent"
-        android:onClick="backButton"
-        android:tint="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="?android:attr/actionModeCloseDrawable" />
+        app:srcCompat="@mipmap/arrow_back" />
 
     <TextView
         android:id="@+id/textView"
@@ -71,12 +40,14 @@
         android:layout_height="67dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:text="SETTINGS"
-        android:textSize="50sp"
+        android:text="@string/title_settings"
+        android:textSize="@dimen/font_huge"
+        android:textAllCaps="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="0dp"
-        tools:textColor="@android:color/white" />
+        tools:textColor="@color/white"
+        />
 
     <Switch
         android:id="@+id/switch1"
@@ -86,12 +57,12 @@
         android:layout_marginTop="84dp"
         android:layout_marginEnd="8dp"
         android:checked="true"
-        android:text="SOUND"
-        android:textSize="30sp"
+        android:text="@string/sound"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="@+id/textView"
+        style="@style/settings_text"
+        />
 
     <Switch
         android:id="@+id/switch2"
@@ -101,11 +72,12 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:checked="true"
-        android:text="MUSIC"
-        android:textSize="30sp"
+        android:text="@string/music"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switch1" />
+        app:layout_constraintTop_toBottomOf="@+id/switch1"
+        style="@style/settings_text"
+        />
 
     <Switch
         android:id="@+id/switch3"
@@ -115,16 +87,30 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:checked="true"
-        android:text="TIPS"
-        android:textSize="30sp"
+        android:text="@string/tips"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switch2" />
+        app:layout_constraintTop_toBottomOf="@+id/switch2"
+        style="@style/settings_text"
+        />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="133dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/sound"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/switch3"
+        app:layout_constraintTop_toBottomOf="@+id/switch3"
+        app:layout_constraintVertical_bias="0.0"
+        style="@style/settings_text"
+        />
 
     <SeekBar
         android:id="@+id/seekBar"
-        android:layout_width="195dp"
+        android:layout_width="162dp"
         android:layout_height="43dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="68dp"
@@ -132,22 +118,40 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.814"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/switch3"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView3"
         android:layout_width="159dp"
         android:layout_height="41dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:text="SOUND"
-        android:textSize="30sp"
+        android:text="@string/music"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switch3"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.014"
+        style="@style/settings_text"
+        />
+
+    <SeekBar
+        android:id="@+id/musicBar"
+        android:layout_width="162dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.794"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar"
+        app:layout_constraintVertical_bias="0.0"
+        />
 
 </android.support.constraint.ConstraintLayout>

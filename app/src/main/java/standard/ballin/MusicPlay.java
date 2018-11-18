@@ -10,32 +10,25 @@ import android.media.*;
  */
 public class MusicPlay {
     public static MediaPlayer mediaPlayer;
-    //private static SoundPool soundPool;
-    public static boolean isPlayingAudio = false;
+    public static boolean isAudioOn = false;
 
     /**
      * Creates a MediaPlayer for audio and starts playing it
      */
     public static void playAudio(Context c, int id) {
         mediaPlayer = MediaPlayer.create(c, id);
-        //soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 1);
-        //soundPool = new SoundPool.Builder()
-        //        .setAudioAttributes(new AudioAttributes.Builder().setLegacyStreamType(AudioManager.STREAM_MUSIC).build())
-        //        .build();
-
         boolean audioNotPlaying = !mediaPlayer.isPlaying();
         if (audioNotPlaying) {
-            isPlayingAudio = true;
+            isAudioOn = true;
             mediaPlayer.start();
         }
     }
-
 
     /**
      * Pauses the audio
      */
     public static void pauseAudio() {
-        isPlayingAudio = false;
+        isAudioOn = false;
         mediaPlayer.pause();
     }
 
@@ -44,7 +37,7 @@ public class MusicPlay {
      * Resumes the audio
      */
     public static void resumeAudio() {
-        isPlayingAudio = true;
+        isAudioOn = true;
         mediaPlayer.start();
     }
 
@@ -52,7 +45,7 @@ public class MusicPlay {
      * Returns if audio is playing or not
      */
     public static boolean isPlaying() {
-        return isPlayingAudio;
+        return isAudioOn;
     }
 
     public static MediaPlayer getMediaPlayer() {

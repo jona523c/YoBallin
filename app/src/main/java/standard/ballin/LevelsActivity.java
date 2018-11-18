@@ -1,11 +1,13 @@
 package standard.ballin;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
 import standard.ballin.levelstrategies.Level1Strategy;
 import standard.ballin.levelstrategies.LevelStrategy;
@@ -15,6 +17,7 @@ import standard.ballin.levelstrategies.LevelStrategy;
  * @author Jonas Madsen
  */
 public class LevelsActivity extends AppCompatActivity {
+    ImageView backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,14 @@ public class LevelsActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_levels);
+
+        backButton = (ImageView) findViewById(R.id.backView);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     /**

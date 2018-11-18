@@ -102,7 +102,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         header.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
         restart = new ImageView(getContext());
-        restart.setImageResource(R.mipmap.sound_toggle_off);
+        restart.setImageResource(R.mipmap.restart_button);
         restart.setId(R.id.restart_button);
         LayoutParams layoutRestart = new LayoutParams((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics()), (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics()));
         restart.setLayoutParams(layoutRestart);
@@ -114,7 +114,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         });
 
         pause = new ImageView(getContext());
-        pause.setImageResource(R.mipmap.settings);
+        pause.setImageResource(R.mipmap.pause_button);
         pause.setId(R.id.pause_button);
         pause.setScaleType(ImageView.ScaleType.FIT_END);
         pause.setOnClickListener(new OnClickListener() {

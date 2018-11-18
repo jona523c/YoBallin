@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Switch;
 
@@ -13,6 +14,7 @@ import android.widget.Switch;
  * @author Jonas Madsen
  */
 public class SettingsActivity extends AppCompatActivity {
+    ImageView backButton;
     Switch musicSwitch;
     SeekBar musicBar;
     AudioManager audioManager;
@@ -41,6 +43,14 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+        backButton = (ImageView) findViewById(R.id.backView);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         // SeekBar that controls volume level (currently for the whole phone)
         musicBar = (SeekBar) findViewById(R.id.musicBar);
         musicBar.setMax(audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC));
@@ -60,13 +70,5 @@ public class SettingsActivity extends AppCompatActivity {
                         progress, 0);
             }
         });
-    }
-
-    /**
-     * Called when user clicks the back-arrow, returns to last screen
-     * @param view
-     */
-    public void backButton(View view) {
-        finish();
     }
 }

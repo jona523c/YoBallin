@@ -1,32 +1,17 @@
 <resources>
-
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
-
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
-    <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
     <style name="BallinTheme" parent="Theme.AppCompat.NoActionBar" >
-        <item name="colorPrimary">@color/primary_material_dark_1</item>
-        <item name="android:colorBackground">@color/background_material_dark</item>
-        <item name="android:navigationBarColor">@color/primary_material_dark_1</item>
-        <item name="android:textColorSecondaryInverse">@color/secondary_text_material_light</item>
-        <item name="android:statusBarColor">@color/primary_material_dark_1</item>
+        <item name="colorPrimary">@color/light_brown</item>
+        <item name="android:colorBackground">@color/sand</item>
+        <item name="android:navigationBarColor">@color/light_brown</item>
+        <item name="android:statusBarColor">@color/light_brown</item>
     </style>
-
+    <style name="settings_text">
+        <item name="android:textSize">@dimen/font_normal</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+    <style name="buttons_text">
+        <item name="android:textSize">@dimen/font_small</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/dark_grey</item>
+    </style>
 </resources>
