@@ -86,7 +86,6 @@ public class Game extends ConstraintLayout implements SensorEventListener {
 
         // Cannot get finishline yet for some reason.
         //rect = new Rect(finishline.getLeft(), finishline.getTop(), finishline.getRight() , finishline.getBottom());
-
     }
 
     /**
@@ -149,7 +148,6 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         set.setVerticalBias(finishline.getId(),1);
 
         set.applyTo(this);
-
     }
 
     /**
@@ -181,6 +179,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
      */
     public void updateBall(float x, float y, long stamp) {
         if(lastStamp != 0) {
+            // Calculates time inbetween stamps (into seconds)
             float t = (stamp - lastStamp) / 1000f;
             ball.computePosition(x,y,t);
         }
@@ -341,7 +340,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
     /**
      * Restarts the game.
      */
-    private void restartGame() {
+    public void restartGame() {
         //TODO: Restart
         ball.setPosX(-0.006f);
         ball.setPosY(-0.03f);
