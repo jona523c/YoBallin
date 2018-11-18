@@ -340,7 +340,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
     /**
      * Restarts the game.
      */
-    private void restartGame() {
+    public void restartGame() {
         //TODO: Restart
         ball.setPosX(-0.006f);
         ball.setPosY(-0.03f);
