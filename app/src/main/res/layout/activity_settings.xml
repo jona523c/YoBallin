@@ -41,13 +41,12 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:text="@string/title_settings"
-        android:textSize="@dimen/font_huge"
         android:textAllCaps="true"
+        android:textSize="@dimen/font_huge"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="0dp"
-        tools:textColor="@color/white"
-        />
+        tools:textColor="@color/white" />
 
     <Switch
         android:id="@+id/switch1"

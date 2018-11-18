@@ -17,7 +17,7 @@ public class RestartDialog {
      * Called to create and show the dialog
      * @param activity
      */
-    public void showDialog(final Activity activity) {
+    public void showDialog(final Activity activity, final Dialog oldDialog) {
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
@@ -30,6 +30,7 @@ public class RestartDialog {
             public void onClick(View v) {
                 GameActivity.getGame().restartGame();
                 // TODO: Should be done differently at a later stage
+                oldDialog.dismiss();
                 dialog.dismiss();
                 //Intent intent = new Intent (activity, GameActivity.class);
                 //intent.putExtra("selectedLevel", 1);

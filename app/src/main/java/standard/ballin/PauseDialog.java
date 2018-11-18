@@ -36,7 +36,7 @@ public class PauseDialog {
             @Override
             public void onClick(View v) {
                 RestartDialog restartDialog = new RestartDialog();
-                restartDialog.showDialog(activity);
+                restartDialog.showDialog(activity, dialog);
             }
         });
 
