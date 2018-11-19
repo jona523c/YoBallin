@@ -15,7 +15,7 @@ import android.widget.Button;
 public class RestartDialog {
     /**
      * Called to create and show the dialog
-     * @param activity
+     * @param activity activity calling the dialog
      * @param oldDialog the dialog that prompted this dialog
      */
     public void showDialog(final Activity activity, final Dialog oldDialog) {
@@ -33,10 +33,6 @@ public class RestartDialog {
                 // TODO: Should be done differently at a later stage
                 oldDialog.dismiss();
                 dialog.dismiss();
-                //Intent intent = new Intent (activity, GameActivity.class);
-                //intent.putExtra("selectedLevel", 1);
-                //activity.finish();
-                //activity.startActivity(intent);
             }
         });
 

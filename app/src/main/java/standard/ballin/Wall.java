@@ -5,7 +5,6 @@ import android.support.constraint.solver.widgets.Rectangle;
 
 /**
  * A simple wall, which currently only is a rectangle.
- *
  * @author Frederik Nielsen
  */
 public class Wall {
