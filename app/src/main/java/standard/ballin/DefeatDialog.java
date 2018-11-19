@@ -23,12 +23,13 @@ public class DefeatDialog {
         restartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                GameActivity.getGame().restartGame();
                 // TODO: Should be done differently at a later stage
                 dialog.dismiss();
-                Intent intent = new Intent (activity, GameActivity.class);
-                intent.putExtra("selectedLevel", 1);
-                activity.finish();
-                activity.startActivity(intent);
+                //Intent intent = new Intent (activity, GameActivity.class);
+                //intent.putExtra("selectedLevel", 1);
+                //activity.finish();
+                //activity.startActivity(intent);
             }
         });
 

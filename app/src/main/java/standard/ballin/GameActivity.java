@@ -52,7 +52,7 @@ public class GameActivity extends FragmentActivity {
 
         //TODO Set background of game
         game.setBackgroundResource(R.drawable.ic_launcher_background);
-
+        game.startGame();
         setContentView(game);
     }
 
@@ -65,7 +65,6 @@ public class GameActivity extends FragmentActivity {
         super.onResume();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        game.startGame();
     }
 
     @Override
