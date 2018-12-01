@@ -24,6 +24,7 @@ public class FinishDialog {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SoundEffectPLayer.playSound(activity, SoundEffectPLayer.BUTTON);
                 dialog.dismiss();
                 activity.finish();
             }
@@ -33,6 +34,7 @@ public class FinishDialog {
         quitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SoundEffectPLayer.playSound(activity, SoundEffectPLayer.BUTTON);
                 dialog.dismiss();
                 activity.finish();
             }

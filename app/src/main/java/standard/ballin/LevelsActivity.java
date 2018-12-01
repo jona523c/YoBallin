@@ -48,6 +48,7 @@ public class LevelsActivity extends AppCompatActivity {
      * @param view
      */
     public void levelButton(View view) {
+        SoundEffectPLayer.playSound(this, SoundEffectPLayer.BUTTON);
         Intent intent = new Intent (this, GameActivity.class);
         intent.putExtra("selectedLevel", 1);
         startActivity(intent);

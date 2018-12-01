@@ -2,6 +2,7 @@ package standard.ballin;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+
+        // Start soundPool
+        SoundEffectPLayer.initSounds(this);
 
         // Starts the background music
         Intent music = new Intent(this, MusicPlay.class);
@@ -75,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        Intent music = new Intent(this, MusicPlay.class);
+        stopService(music);
         // Release mediaPlayer to free memory
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onDestroy();
@@ -85,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void playButton(View view) {
+        SoundEffectPLayer.playSound(this, SoundEffectPLayer.BUTTON);
         Intent intent = new Intent (this, LevelsActivity.class);
         startActivity(intent);
     }

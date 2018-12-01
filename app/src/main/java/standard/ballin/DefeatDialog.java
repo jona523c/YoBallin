@@ -23,6 +23,7 @@ public class DefeatDialog {
         restartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SoundEffectPLayer.playSound(activity, SoundEffectPLayer.BUTTON);
                 GameActivity.getGame().restartGame();
                 // TODO: Should be done differently at a later stage
                 dialog.dismiss();
@@ -38,6 +39,7 @@ public class DefeatDialog {
         quitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SoundEffectPLayer.playSound(activity, SoundEffectPLayer.BUTTON);
                 dialog.dismiss();
                 activity.finish();
             }

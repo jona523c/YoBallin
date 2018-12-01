@@ -30,6 +30,7 @@ public class PauseDialog {
         resumeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SoundEffectPLayer.playSound(activity, SoundEffectPLayer.BUTTON);
                 GameActivity.getGame().startGame();
                 dialog.dismiss();
             }
@@ -40,6 +41,7 @@ public class PauseDialog {
         restartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SoundEffectPLayer.playSound(activity, SoundEffectPLayer.BUTTON);
                 RestartDialog restartDialog = new RestartDialog();
                 restartDialog.showDialog(activity, dialog);
             }
@@ -50,6 +52,7 @@ public class PauseDialog {
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SoundEffectPLayer.playSound(activity, SoundEffectPLayer.BUTTON);
                 Intent intent = new Intent (activity, SettingsActivity.class);
                 activity.startActivity(intent);
             }
@@ -60,6 +63,7 @@ public class PauseDialog {
         quitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SoundEffectPLayer.playSound(activity, SoundEffectPLayer.BUTTON);
                 dialog.dismiss();
                 activity.finish();
             }

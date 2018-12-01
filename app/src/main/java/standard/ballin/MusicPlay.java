@@ -24,7 +24,7 @@ public class MusicPlay extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        mediaPlayer = MediaPlayer.create(this, R.raw.flute);
+        mediaPlayer = MediaPlayer.create(this, R.raw.music);
         isAudioOn = true;
     }
 
@@ -39,9 +39,8 @@ public class MusicPlay extends Service {
     }
 
     public static void turnOff() {
-        isAudioOn = false;
         isTurnedOff = true;
-        mediaPlayer.pause();
+        pauseAudio();
     }
 
     /**
@@ -49,7 +48,9 @@ public class MusicPlay extends Service {
      */
     public static void pauseAudio() {
         isAudioOn = false;
-        mediaPlayer.pause();
+        if (mediaPlayer != null) {
+            mediaPlayer.pause();
+        }
     }
 
 
