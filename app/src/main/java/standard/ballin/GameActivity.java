@@ -63,6 +63,9 @@ public class GameActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        if (!MusicPlay.isTurnedOff()) {
+            MusicPlay.resumeAudio();
+        }
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
     }
@@ -70,10 +73,12 @@ public class GameActivity extends FragmentActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        MusicPlay.pauseAudio();
 
         game.stopGame();
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
+
     public void finishDialog() {
         FinishDialog finish = new FinishDialog();
         finish.showDialog(this);

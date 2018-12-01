@@ -30,16 +30,18 @@ public class SettingsActivity extends AppCompatActivity {
 
         // Music toggle on and off.
         musicSwitch = (Switch) findViewById(R.id.switch2);
-        musicSwitch.setChecked(MusicPlay.isPlaying());
+        musicSwitch.setChecked(!MusicPlay.isTurnedOff());
         musicSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (MusicPlay.isPlaying()) {
+                if (!MusicPlay.isTurnedOff()) {
+                    MusicPlay.turnOff();
                     MusicPlay.pauseAudio();
                 } else {
+                    MusicPlay.turnOn();
                     MusicPlay.resumeAudio();
                 }
-                musicSwitch.setChecked(MusicPlay.isPlaying());
+                musicSwitch.setChecked(!MusicPlay.isTurnedOff());
             }
         });
 
@@ -74,6 +76,15 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        if (!MusicPlay.isTurnedOff()) {
+            MusicPlay.resumeAudio();
+        }
         super.onResume();
+    }
+
+    @Override
+    protected void onPause () {
+        MusicPlay.pauseAudio();
+        super.onPause();
     }
 }

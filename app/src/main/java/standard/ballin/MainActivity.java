@@ -17,7 +17,6 @@ import android.widget.*;
 public class MainActivity extends AppCompatActivity {
     ImageView soundButton;
     ImageView settingsButton;
-    MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,19 +26,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Starts the background music
-        MusicPlay.playAudio(getApplicationContext(), R.raw.flute);
+        Intent music = new Intent(this, MusicPlay.class);
+        startService(music);
 
         // If sound shortcut is clicked, turn on or turn off sound.
         soundButton = (ImageView) findViewById(R.id.soundView);
         soundButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (MusicPlay.isPlaying()) {
+                if (!MusicPlay.isTurnedOff()) {
+                    MusicPlay.turnOff();
                     MusicPlay.pauseAudio();
                 } else {
+                    MusicPlay.turnOn();
                     MusicPlay.resumeAudio();
                 }
-                soundButton.setActivated(MusicPlay.isPlaying());
+                soundButton.setActivated(!MusicPlay.isTurnedOff());
             }
         });
 
@@ -57,15 +59,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         // Make sure the shortcut is in the correct state
+        if (!MusicPlay.isTurnedOff()) {
+            MusicPlay.resumeAudio();
+        }
         soundButton = (ImageView) findViewById(R.id.soundView);
-        soundButton.setActivated(MusicPlay.isPlaying());
+        soundButton.setActivated(!MusicPlay.isTurnedOff());
         super.onResume();
+    }
+
+    @Override
+    protected void onPause () {
+        MusicPlay.pauseAudio();
+        super.onPause();
     }
 
     @Override
     protected void onDestroy() {
         // Release mediaPlayer to free memory
-        MusicPlay.getMediaPlayer().release();
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onDestroy();
     }

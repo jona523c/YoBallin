@@ -46,6 +46,9 @@
         <activity
             android:name=".SettingsActivity"
             android:screenOrientation="portrait"></activity>
+        <service
+            android:enabled="true"
+            android:name=".MusicPlay" />
     </application>
 
 </manifest>

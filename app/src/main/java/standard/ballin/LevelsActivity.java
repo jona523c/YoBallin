@@ -58,4 +58,19 @@ public class LevelsActivity extends AppCompatActivity {
         super.onDestroy();
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
+
+    @Override
+    protected void onResume() {
+        // Make sure the shortcut is in the correct state
+        if (!MusicPlay.isTurnedOff()) {
+            MusicPlay.resumeAudio();
+        }
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause () {
+        MusicPlay.pauseAudio();
+        super.onPause();
+    }
 }

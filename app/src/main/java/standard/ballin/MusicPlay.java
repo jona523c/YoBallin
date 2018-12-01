@@ -1,27 +1,47 @@
 package standard.ballin;
 
+import android.app.Service;
 import android.content.Context;
+import android.content.Intent;
 import android.media.*;
+import android.os.IBinder;
 
 
 /**
  * Class for creating a global MediaPlayer to be turned on and off in different activities
  * @author Jonas Madsen
  */
-public class MusicPlay {
-    public static MediaPlayer mediaPlayer;
-    public static boolean isAudioOn = false;
+public class MusicPlay extends Service {
+    private static MediaPlayer mediaPlayer;
+    private static boolean isAudioOn = false;
+    private static boolean isTurnedOff = false;
 
-    /**
-     * Creates a MediaPlayer for audio and starts playing it
-     */
-    public static void playAudio(Context c, int id) {
-        mediaPlayer = MediaPlayer.create(c, id);
-        boolean audioNotPlaying = !mediaPlayer.isPlaying();
-        if (audioNotPlaying) {
-            isAudioOn = true;
-            mediaPlayer.start();
-        }
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        mediaPlayer = MediaPlayer.create(this, R.raw.flute);
+        isAudioOn = true;
+    }
+
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        mediaPlayer.start();
+        isAudioOn = true;
+        return Service.START_STICKY;
+    }
+
+    public static void turnOn() {
+        isTurnedOff = false;
+    }
+
+    public static void turnOff() {
+        isAudioOn = false;
+        isTurnedOff = true;
+        mediaPlayer.pause();
     }
 
     /**
@@ -37,18 +57,22 @@ public class MusicPlay {
      * Resumes the audio
      */
     public static void resumeAudio() {
-        isAudioOn = true;
-        mediaPlayer.start();
+        if (!isTurnedOff) {
+            isAudioOn = true;
+            if (mediaPlayer != null) {
+                mediaPlayer.start();
+            }
+        }
     }
 
-    /**
-     * Returns if audio is playing or not
-     */
-    public static boolean isPlaying() {
-        return isAudioOn;
+    public static boolean isTurnedOff() {
+        return isTurnedOff;
     }
 
-    public static MediaPlayer getMediaPlayer() {
-        return mediaPlayer;
+
+    @Override
+    public void onDestroy() {
+        mediaPlayer.stop();
+        mediaPlayer.release();
     }
 }
