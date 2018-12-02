@@ -95,6 +95,11 @@ public class GameActivity extends FragmentActivity {
         defeat.showDialog(this);
     }
 
+    public void gameDialog() {
+        GameDialog game = new GameDialog(1, 2, 3);
+        game.showDialog(this);
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

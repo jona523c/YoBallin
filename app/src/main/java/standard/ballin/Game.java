@@ -38,7 +38,6 @@ public class Game extends ConstraintLayout implements SensorEventListener {
     private long start;
     private long before;
     private long now = System.currentTimeMillis();
-    private Context globalContext;
 
     /**
      * Initialize a game object, which contains the level that is selected.
@@ -47,7 +46,6 @@ public class Game extends ConstraintLayout implements SensorEventListener {
      */
     public Game(Context context, LevelStrategy levelStrategy) {
         super(context);
-        globalContext = context;
         this.levelStrategy = levelStrategy;
         sensorManager = (SensorManager) context.getSystemService(SENSOR_SERVICE);
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -68,6 +66,10 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         addView(ball, new ViewGroup.LayoutParams(ballWidth, ballHeight));
 
         initializeDrawings();
+
+        //TODO: PAUSE GAME AND RUN GAMEDIALOG
+        gameDialog();
+        stopGame();
     }
 
     /**
@@ -129,7 +131,6 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         finishline.setBackgroundColor(Color.GREEN);
         LayoutParams layoutFinishline = new LayoutParams(LayoutParams.MATCH_PARENT, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 35, getResources().getDisplayMetrics()));
         finishline.setLayoutParams(layoutFinishline);
-
 
         this.addView(header,0);
         this.addView(restart,1);
@@ -194,6 +195,10 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         ((GameActivity) getContext()).finishDialog();
     }
 
+    private void gameDialog() {
+        ((GameActivity) getContext()).gameDialog();
+    }
+
     /**
      * Gets the balls X position.
      * @return returns balls X position
@@ -241,14 +246,14 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         canvas.drawRect(rectWall, paintWall);
 
         if(rect.contains((int) ball.getTranslationX(), (int) ball.getTranslationY())) {
-            SoundPlayer.playSound(globalContext, SoundPlayer.VICTORY);
+            SoundPlayer.playSound(getContext(), SoundPlayer.VICTORY);
             stopGame();
             finishDialog();
             return;
             //TODO: Hvorfor returneres der?
         }
         if(intersects(ball, rectWall)) {
-            SoundPlayer.playSound(globalContext, SoundPlayer.DEFEAT);
+            SoundPlayer.playSound(getContext(), SoundPlayer.DEFEAT);
             stopGame();
             defeatDialog();
         }
