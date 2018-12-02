@@ -3,17 +3,13 @@ package standard.ballin;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.*;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.hardware.*;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
-import android.support.constraint.solver.widgets.Rectangle;
 import android.util.*;
 import android.view.*;
 import android.widget.*;
 
-import standard.ballin.levelstrategies.Level1Strategy;
 import standard.ballin.levelstrategies.LevelStrategy;
 
 import static android.content.Context.SENSOR_SERVICE;
@@ -42,6 +38,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
     private long start;
     private long before;
     private long now = System.currentTimeMillis();
+    private Context globalContext;
 
     /**
      * Initialize a game object, which contains the level that is selected.
@@ -50,6 +47,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
      */
     public Game(Context context, LevelStrategy levelStrategy) {
         super(context);
+        globalContext = context;
         this.levelStrategy = levelStrategy;
         sensorManager = (SensorManager) context.getSystemService(SENSOR_SERVICE);
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -243,11 +241,14 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         canvas.drawRect(rectWall, paintWall);
 
         if(rect.contains((int) ball.getTranslationX(), (int) ball.getTranslationY())) {
+            SoundPlayer.playSound(globalContext, SoundPlayer.VICTORY);
             stopGame();
             finishDialog();
             return;
+            //TODO: Hvorfor returneres der?
         }
         if(intersects(ball, rectWall)) {
+            SoundPlayer.playSound(globalContext, SoundPlayer.DEFEAT);
             stopGame();
             defeatDialog();
         }

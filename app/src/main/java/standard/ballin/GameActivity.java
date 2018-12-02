@@ -63,7 +63,7 @@ public class GameActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (!MusicPlay.isTurnedOff()) {
+        if (MusicPlay.getPlayState()) {
             MusicPlay.resumeAudio();
         }
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);

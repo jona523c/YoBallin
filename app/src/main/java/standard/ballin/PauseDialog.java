@@ -1,9 +1,7 @@
 package standard.ballin;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.View;
 import android.view.Window;
@@ -30,7 +28,7 @@ public class PauseDialog {
         resumeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SoundEffectPLayer.playSound(activity, SoundEffectPLayer.BUTTON);
+                SoundPlayer.playSound(activity, SoundPlayer.BUTTON);
                 GameActivity.getGame().startGame();
                 dialog.dismiss();
             }
@@ -41,7 +39,7 @@ public class PauseDialog {
         restartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SoundEffectPLayer.playSound(activity, SoundEffectPLayer.BUTTON);
+                SoundPlayer.playSound(activity, SoundPlayer.BUTTON);
                 RestartDialog restartDialog = new RestartDialog();
                 restartDialog.showDialog(activity, dialog);
             }
@@ -52,7 +50,7 @@ public class PauseDialog {
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SoundEffectPLayer.playSound(activity, SoundEffectPLayer.BUTTON);
+                SoundPlayer.playSound(activity, SoundPlayer.BUTTON);
                 Intent intent = new Intent (activity, SettingsActivity.class);
                 activity.startActivity(intent);
             }
@@ -63,7 +61,7 @@ public class PauseDialog {
         quitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SoundEffectPLayer.playSound(activity, SoundEffectPLayer.BUTTON);
+                SoundPlayer.playSound(activity, SoundPlayer.BUTTON);
                 dialog.dismiss();
                 activity.finish();
             }

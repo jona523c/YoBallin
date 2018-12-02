@@ -1,12 +1,9 @@
 package standard.ballin;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
-import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.*;
 
@@ -27,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Start soundPool
-        SoundEffectPLayer.initSounds(this);
+        SoundPlayer.initSounds(this);
 
         // Starts the background music
         Intent music = new Intent(this, MusicPlay.class);
@@ -38,14 +35,14 @@ public class MainActivity extends AppCompatActivity {
         soundButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!MusicPlay.isTurnedOff()) {
+                if (MusicPlay.getPlayState()) {
                     MusicPlay.turnOff();
                     MusicPlay.pauseAudio();
                 } else {
                     MusicPlay.turnOn();
                     MusicPlay.resumeAudio();
                 }
-                soundButton.setActivated(!MusicPlay.isTurnedOff());
+                soundButton.setActivated(MusicPlay.getPlayState());
             }
         });
 
@@ -63,11 +60,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         // Make sure the shortcut is in the correct state
-        if (!MusicPlay.isTurnedOff()) {
+        if (MusicPlay.getPlayState()) {
             MusicPlay.resumeAudio();
         }
         soundButton = (ImageView) findViewById(R.id.soundView);
-        soundButton.setActivated(!MusicPlay.isTurnedOff());
+        soundButton.setActivated(MusicPlay.getPlayState());
         super.onResume();
     }
 
@@ -91,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void playButton(View view) {
-        SoundEffectPLayer.playSound(this, SoundEffectPLayer.BUTTON);
+        SoundPlayer.playSound(this, SoundPlayer.BUTTON);
         Intent intent = new Intent (this, LevelsActivity.class);
         startActivity(intent);
     }

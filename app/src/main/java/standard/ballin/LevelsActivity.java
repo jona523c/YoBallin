@@ -1,16 +1,11 @@
 package standard.ballin;
 
 import android.content.Intent;
-import android.media.Image;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
-
-import standard.ballin.levelstrategies.Level1Strategy;
-import standard.ballin.levelstrategies.LevelStrategy;
 
 /**
  * Activity class for Levels menu
@@ -48,7 +43,7 @@ public class LevelsActivity extends AppCompatActivity {
      * @param view
      */
     public void levelButton(View view) {
-        SoundEffectPLayer.playSound(this, SoundEffectPLayer.BUTTON);
+        SoundPlayer.playSound(this, SoundPlayer.BUTTON);
         Intent intent = new Intent (this, GameActivity.class);
         intent.putExtra("selectedLevel", 1);
         startActivity(intent);
@@ -63,7 +58,7 @@ public class LevelsActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         // Make sure the shortcut is in the correct state
-        if (!MusicPlay.isTurnedOff()) {
+        if (MusicPlay.getPlayState()) {
             MusicPlay.resumeAudio();
         }
         super.onResume();

@@ -1,7 +1,6 @@
 package standard.ballin;
 
 import android.app.*;
-import android.content.Intent;
 import android.view.*;
 import android.widget.*;
 
@@ -24,7 +23,7 @@ public class FinishDialog {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SoundEffectPLayer.playSound(activity, SoundEffectPLayer.BUTTON);
+                SoundPlayer.playSound(activity, SoundPlayer.BUTTON);
                 dialog.dismiss();
                 activity.finish();
             }
@@ -34,7 +33,7 @@ public class FinishDialog {
         quitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SoundEffectPLayer.playSound(activity, SoundEffectPLayer.BUTTON);
+                SoundPlayer.playSound(activity, SoundPlayer.BUTTON);
                 dialog.dismiss();
                 activity.finish();
             }

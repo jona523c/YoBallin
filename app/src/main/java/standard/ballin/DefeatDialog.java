@@ -2,7 +2,6 @@ package standard.ballin;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Intent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -23,7 +22,7 @@ public class DefeatDialog {
         restartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SoundEffectPLayer.playSound(activity, SoundEffectPLayer.BUTTON);
+                SoundPlayer.playSound(activity, SoundPlayer.BUTTON);
                 GameActivity.getGame().restartGame();
                 // TODO: Should be done differently at a later stage
                 dialog.dismiss();
@@ -39,7 +38,7 @@ public class DefeatDialog {
         quitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SoundEffectPLayer.playSound(activity, SoundEffectPLayer.BUTTON);
+                SoundPlayer.playSound(activity, SoundPlayer.BUTTON);
                 dialog.dismiss();
                 activity.finish();
             }
