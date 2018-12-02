@@ -15,6 +15,7 @@ import android.widget.*;
 public class MainActivity extends AppCompatActivity {
     ImageView soundButton;
     ImageView settingsButton;
+    private boolean soundToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +36,18 @@ public class MainActivity extends AppCompatActivity {
         soundButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (MusicPlay.getPlayState()) {
+                if (soundToggle) {
+                    SoundPlayer.turnOff();
                     MusicPlay.turnOff();
                     MusicPlay.pauseAudio();
+                    soundToggle = false;
                 } else {
+                    SoundPlayer.turnOn();
                     MusicPlay.turnOn();
                     MusicPlay.resumeAudio();
+                    soundToggle = true;
                 }
-                soundButton.setActivated(MusicPlay.getPlayState());
+                soundButton.setActivated(soundToggle);
             }
         });
 
@@ -63,8 +68,14 @@ public class MainActivity extends AppCompatActivity {
         if (MusicPlay.getPlayState()) {
             MusicPlay.resumeAudio();
         }
+
+        if (MusicPlay.getPlayState() || SoundPlayer.getPlayState()) {
+            soundToggle = true;
+        } else {
+            soundToggle = false;
+        }
         soundButton = (ImageView) findViewById(R.id.soundView);
-        soundButton.setActivated(MusicPlay.getPlayState());
+        soundButton.setActivated(soundToggle);
         super.onResume();
     }
 
