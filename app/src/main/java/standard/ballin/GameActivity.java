@@ -81,9 +81,11 @@ public class GameActivity extends FragmentActivity {
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
-    public void finishDialog() {
+    public void finishDialog(int stars) {
         FinishDialog finish = new FinishDialog();
-        finish.showDialog(this);
+        Bundle bundle = new Bundle();
+        bundle.putInt("stars", stars);
+        finish.showDialog(this, bundle);
     }
 
     public void pauseDialog() {

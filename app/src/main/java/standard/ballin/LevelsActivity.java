@@ -1,11 +1,15 @@
 package standard.ballin;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+
+import java.util.Map;
 
 /**
  * Activity class for Levels menu
@@ -13,6 +17,7 @@ import android.widget.ImageView;
  */
 public class LevelsActivity extends AppCompatActivity {
     ImageView backButton;
+    Map starMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +33,9 @@ public class LevelsActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        starMap = sharedPref.getAll();
     }
 
     /**

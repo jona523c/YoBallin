@@ -2,8 +2,10 @@ package standard.ballin;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.*;
 import android.hardware.*;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.support.constraint.ConstraintLayout;
@@ -43,6 +45,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
     private long start, lastPause;
     private long before;
     private long now = System.currentTimeMillis();
+    private int stars;
 
     /**
      * Initialize a game object, which contains the level that is selected.
@@ -207,7 +210,9 @@ public class Game extends ConstraintLayout implements SensorEventListener {
      *  Opens finishDialog
      */
     private void finishDialog() {
-        ((GameActivity) getContext()).finishDialog();
+        Bundle bundle = new Bundle();
+        bundle.putInt("stars", stars);
+        ((GameActivity) getContext()).finishDialog(stars);
     }
 
     private void gameDialog() {
@@ -264,6 +269,11 @@ public class Game extends ConstraintLayout implements SensorEventListener {
             SoundPlayer.playSound(getContext(), SoundPlayer.VICTORY);
             stopGame();
             timer.stop();
+            stars = levelStrategy.calculateStars(timer.getBase());
+            SharedPreferences sharedPref = getContext().getSharedPreferences("stars", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putInt(levelStrategy.getLevel(), stars);
+            editor.apply();
             finishDialog();
             return;
             //TODO: Hvorfor returneres der?

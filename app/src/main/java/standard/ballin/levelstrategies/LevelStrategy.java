@@ -1,7 +1,5 @@
 package standard.ballin.levelstrategies;
 
-import java.util.ArrayList;
-
 import standard.ballin.Wall;
 
 /**
@@ -12,4 +10,8 @@ import standard.ballin.Wall;
 public interface LevelStrategy {
 
     public Wall getWall();
+
+    public int calculateStars(Long time);
+
+    public String getLevel();
 }

@@ -1,6 +1,7 @@
 package standard.ballin;
 
 import android.app.*;
+import android.os.Bundle;
 import android.view.*;
 import android.widget.*;
 
@@ -12,8 +13,9 @@ public class FinishDialog {
     /**
      * Called to create and show the dialog
      * @param activity activity calling the dialog
+     * @param bundle
      */
-    public void showDialog(final Activity activity){
+    public void showDialog(final Activity activity, Bundle bundle){
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);

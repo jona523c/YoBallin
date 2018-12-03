@@ -18,4 +18,16 @@ public class Level1Strategy implements LevelStrategy {
         return wall;
     }
 
+    @Override
+    public int calculateStars(Long time) {
+        if(time<5) return 3;
+        else if(time<10) return 2;
+        else return 1;
+    }
+
+    @Override
+    public String getLevel() {
+        return "1";
+    }
+
 }
