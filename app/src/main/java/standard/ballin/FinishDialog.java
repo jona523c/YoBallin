@@ -18,6 +18,7 @@ public class FinishDialog {
     public void showDialog(final Activity activity, Bundle bundle){
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.finish_dialog);
 

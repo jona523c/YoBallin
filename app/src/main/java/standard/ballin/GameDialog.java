@@ -25,6 +25,7 @@ public class GameDialog {
     public void showDialog(final Activity activity){
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.setContentView(R.layout.game_dialog);
 
         TextView oneStarText = (TextView) dialog.findViewById(R.id.oneStar);

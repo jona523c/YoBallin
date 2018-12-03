@@ -2,11 +2,14 @@
 <resources>
     <color name="dark_brown">#5a3417</color>
     <color name="light_brown">#73421c</color>
-    <color name="sand">#dfc27d</color>
+    <color name="sand">#c4a55d</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="dark_grey">#191919</color>
-    <color name="green">#67D476</color>
-    <color name="red">#F2A2A2</color>
+    <color name="green">#99CC99</color>
+    <color name="red">#FF9999</color>
+    <color name="dark_red">#990030</color>
     <color name="gold">#E5E162</color>
+    <color name="secondary_text_material_light">#00000000</color>
+    <color name="text_color_secondary">#8cffffff</color>
 </resources>

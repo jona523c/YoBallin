@@ -4,6 +4,9 @@
         <item name="android:colorBackground">@color/sand</item>
         <item name="android:navigationBarColor">@color/light_brown</item>
         <item name="android:statusBarColor">@color/light_brown</item>
+        <item name="colorAccent">@color/dark_red</item>
+        <item name="android:textColorSecondaryInverse">@color/secondary_text_material_light</item>
+        <item name="android:textColorSecondary">@color/text_color_secondary</item>
     </style>
     <style name="settings_text">
         <item name="android:textSize">@dimen/font_normal</item>

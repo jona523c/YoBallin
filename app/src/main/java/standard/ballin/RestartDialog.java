@@ -21,6 +21,7 @@ public class RestartDialog {
     public void showDialog(final Activity activity, final Dialog oldDialog) {
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.restart_dialog);
 

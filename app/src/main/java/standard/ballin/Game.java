@@ -73,7 +73,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         scaleWidthFromDpi = widthDpi / 0.02f;
         ballWidth =  (int) (ballDiameter * scaleWidthFromDpi);
         ballHeight = (int) (ballDiameter * scaleHeightFromDpi);
-        ball.setBackgroundResource(R.drawable.header);
+        ball.setBackgroundResource(R.drawable.ball);
         ball.setLayerType(LAYER_TYPE_HARDWARE, null);
         addView(ball, new ViewGroup.LayoutParams(ballWidth, ballHeight));
 

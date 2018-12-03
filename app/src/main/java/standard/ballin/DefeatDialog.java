@@ -14,6 +14,7 @@ public class DefeatDialog {
     public void showDialog(final Activity activity){
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.defeat_dialog);
 
