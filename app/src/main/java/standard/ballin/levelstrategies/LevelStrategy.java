@@ -14,4 +14,6 @@ public interface LevelStrategy {
     public int calculateStars(Long time);
 
     public String getLevel();
+
+    public int getStars();
 }

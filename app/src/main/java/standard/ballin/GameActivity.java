@@ -42,7 +42,7 @@ public class GameActivity extends FragmentActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         switch(getIntent().getIntExtra("selectedLevel", 0)) {
             case 1: {
-                levelStrategy = new Level1Strategy();
+                levelStrategy = new Level1Strategy(this);
                 break;
             }
 

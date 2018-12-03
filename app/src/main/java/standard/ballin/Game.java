@@ -272,7 +272,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
             stars = levelStrategy.calculateStars(timer.getBase());
             SharedPreferences sharedPref = getContext().getSharedPreferences("stars", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putInt(levelStrategy.getLevel(), stars);
+            editor.putInt("stars", stars);
             editor.apply();
             finishDialog();
             return;
