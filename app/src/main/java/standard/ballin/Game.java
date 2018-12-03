@@ -46,6 +46,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
     private long before;
     private long now = System.currentTimeMillis();
     private int stars;
+    private boolean firsttime = true;
 
     /**
      * Initialize a game object, which contains the level that is selected.
@@ -75,8 +76,6 @@ public class Game extends ConstraintLayout implements SensorEventListener {
 
         initializeDrawings();
         //TODO: PAUSE GAME AND RUN GAMEDIALOG
-        //gameDialog();
-        //stopGame();
     }
 
     /**
@@ -261,6 +260,12 @@ public class Game extends ConstraintLayout implements SensorEventListener {
      * @param canvas The canvas object of the ConstraintLayout given by Android
      */
     public void onDraw(Canvas canvas) {
+        if(firsttime) {
+            gameDialog();
+            timer.stop();
+            stopGame();
+        firsttime = false;}
+
         // TODO graphical finishline instead of just green finishline.
         rect = new Rect(finishline.getLeft(), finishline.getTop(), finishline.getRight() , finishline.getBottom());
         canvas.drawRect(rectWall, paintWall);
