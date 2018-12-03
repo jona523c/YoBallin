@@ -14,6 +14,8 @@ import android.util.*;
 import android.view.*;
 import android.widget.*;
 
+import org.w3c.dom.Text;
+
 import java.util.Timer;
 
 import standard.ballin.levelstrategies.LevelStrategy;
@@ -30,6 +32,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
     private Sensor accelerometer;
     private Ball ball;
     private ImageView header, restart, pause, finishline;
+    private TextView levelText;
     private Chronometer timer;
     private Display display;
     private Rect rect, rectWall;
@@ -144,11 +147,17 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         timer.setId(R.id.timer);
         timer.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics()));
 
+        levelText = new TextView(getContext());
+        levelText.setId(R.id.levelText);
+        levelText.setText(getContext().getString(R.string.level)+" "+levelStrategy.getLevel());
+        levelText.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics()));
+
         this.addView(header,0);
         this.addView(restart,1);
         this.addView(pause, 2);
         this.addView(finishline, 3);
         this.addView(timer,4);
+        this.addView(levelText, 5);
         ConstraintSet set = new ConstraintSet();
         set.clone(this);
         set.connect(pause.getId(),ConstraintSet.LEFT,ConstraintSet.PARENT_ID,ConstraintSet.LEFT,0);
@@ -162,6 +171,11 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         set.connect(timer.getId(),ConstraintSet.LEFT,ConstraintSet.PARENT_ID,ConstraintSet.LEFT,0);
         set.connect(timer.getId(),ConstraintSet.RIGHT,ConstraintSet.PARENT_ID,ConstraintSet.RIGHT,0);
         set.setHorizontalBias(timer.getId(),0.5f);
+
+        set.connect(levelText.getId(),ConstraintSet.TOP,timer.getId(),ConstraintSet.BOTTOM,0);
+        set.connect(levelText.getId(),ConstraintSet.LEFT,ConstraintSet.PARENT_ID,ConstraintSet.LEFT,0);
+        set.connect(levelText.getId(),ConstraintSet.RIGHT,ConstraintSet.PARENT_ID,ConstraintSet.RIGHT,0);
+        set.setHorizontalBias(levelText.getId(),0.5f);
 
         set.applyTo(this);
     }
