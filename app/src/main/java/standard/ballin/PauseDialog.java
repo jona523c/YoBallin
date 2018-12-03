@@ -30,6 +30,7 @@ public class PauseDialog {
             public void onClick(View v) {
                 SoundPlayer.playSound(activity, SoundPlayer.BUTTON);
                 GameActivity.getGame().startGame();
+                //GameActivity.getGame().startChronometer();
                 dialog.dismiss();
             }
         });

@@ -4,11 +4,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.*;
 import android.hardware.*;
+import android.os.CountDownTimer;
+import android.os.SystemClock;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.util.*;
 import android.view.*;
 import android.widget.*;
+
+import java.util.Timer;
 
 import standard.ballin.levelstrategies.LevelStrategy;
 
@@ -24,6 +28,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
     private Sensor accelerometer;
     private Ball ball;
     private ImageView header, restart, pause, finishline;
+    private Chronometer timer;
     private Display display;
     private Rect rect, rectWall;
     private LevelStrategy levelStrategy;
@@ -35,7 +40,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
     private float scaleHeightFromDpi, scaleWidthFromDpi, heightDpi, widthDpi, sensorY, sensorX, currentX, currentY, horizontalCeiling, verticalCeiling;
     private long lastStamp;
     private boolean sensorUpdatedEnabled = true;
-    private long start;
+    private long start, lastPause;
     private long before;
     private long now = System.currentTimeMillis();
 
@@ -66,10 +71,9 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         addView(ball, new ViewGroup.LayoutParams(ballWidth, ballHeight));
 
         initializeDrawings();
-
         //TODO: PAUSE GAME AND RUN GAMEDIALOG
-        gameDialog();
-        stopGame();
+        //gameDialog();
+        //stopGame();
     }
 
     /**
@@ -119,7 +123,9 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         pause.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                lastPause = SystemClock.elapsedRealtime();
                 stopGame();
+                timer.stop();
                 ((GameActivity) getContext()).pauseDialog();
             }
         });
@@ -132,10 +138,15 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         LayoutParams layoutFinishline = new LayoutParams(LayoutParams.MATCH_PARENT, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 35, getResources().getDisplayMetrics()));
         finishline.setLayoutParams(layoutFinishline);
 
+        timer = new Chronometer(getContext());
+        timer.setId(R.id.timer);
+        timer.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics()));
+
         this.addView(header,0);
         this.addView(restart,1);
         this.addView(pause, 2);
         this.addView(finishline, 3);
+        this.addView(timer,4);
         ConstraintSet set = new ConstraintSet();
         set.clone(this);
         set.connect(pause.getId(),ConstraintSet.LEFT,ConstraintSet.PARENT_ID,ConstraintSet.LEFT,0);
@@ -145,6 +156,10 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         set.connect(finishline.getId(),ConstraintSet.BOTTOM,ConstraintSet.PARENT_ID,ConstraintSet.BOTTOM,0);
         set.connect(finishline.getId(),ConstraintSet.TOP,ConstraintSet.PARENT_ID,ConstraintSet.TOP,0);
         set.setVerticalBias(finishline.getId(),1);
+
+        set.connect(timer.getId(),ConstraintSet.LEFT,ConstraintSet.PARENT_ID,ConstraintSet.LEFT,0);
+        set.connect(timer.getId(),ConstraintSet.RIGHT,ConstraintSet.PARENT_ID,ConstraintSet.RIGHT,0);
+        set.setHorizontalBias(timer.getId(),0.5f);
 
         set.applyTo(this);
     }
@@ -242,7 +257,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
      */
     public void onDraw(Canvas canvas) {
         // TODO graphical finishline instead of just green finishline.
-        rect = new Rect(getViewById(R.id.finishline).getLeft(), getViewById(R.id.finishline).getTop(), getViewById(R.id.finishline).getRight() , getViewById(R.id.finishline).getBottom());
+        rect = new Rect(finishline.getLeft(), finishline.getTop(), finishline.getRight() , finishline.getBottom());
         canvas.drawRect(rectWall, paintWall);
 
         if(rect.contains((int) ball.getTranslationX(), (int) ball.getTranslationY())) {
@@ -331,6 +346,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         sensorUpdatedEnabled = false;
         sensorManager.unregisterListener(this);
         start += System.currentTimeMillis()-before;
+        lastPause = SystemClock.elapsedRealtime();
     }
 
 
@@ -338,6 +354,8 @@ public class Game extends ConstraintLayout implements SensorEventListener {
      * Starts the game by registering the listener.
      */
     public void startGame() {
+        timer.setBase(timer.getBase() + SystemClock.elapsedRealtime() - lastPause);
+        timer.start();
         sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_GAME);
         sensorUpdatedEnabled = true;
     }
@@ -346,10 +364,23 @@ public class Game extends ConstraintLayout implements SensorEventListener {
      * Restarts the game.
      */
     public void restartGame() {
+        resetChronometer();
         ball.setPosX(-0.006f);
         ball.setPosY(-0.03f);
         startGame();
         //TODO: Restart
 
+    }
+
+    public void resetChronometer() {
+        timer.setBase(0);
+        lastPause = 0;
+    }
+
+    public void newGame() {
+        timer.setBase(SystemClock.elapsedRealtime());
+        timer.start();
+        sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_GAME);
+        sensorUpdatedEnabled = true;
     }
 }

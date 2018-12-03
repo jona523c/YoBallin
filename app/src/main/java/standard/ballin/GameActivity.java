@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Chronometer;
 
 import standard.ballin.levelstrategies.Level1Strategy;
 import standard.ballin.levelstrategies.LevelStrategy;
@@ -18,6 +19,7 @@ import standard.ballin.levelstrategies.LevelStrategy;
 public class GameActivity extends FragmentActivity {
     private static Game game;
     private SensorManager sensorManager;
+    private Chronometer chronometer;
     private WindowManager windowManager;
     private LevelStrategy levelStrategy;
 
@@ -52,7 +54,7 @@ public class GameActivity extends FragmentActivity {
 
         //TODO Set background of game
         game.setBackgroundResource(R.drawable.ic_launcher_background);
-        game.startGame();
+        game.newGame();
         setContentView(game);
     }
 
