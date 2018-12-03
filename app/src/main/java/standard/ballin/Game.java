@@ -263,6 +263,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         if(rect.contains((int) ball.getTranslationX(), (int) ball.getTranslationY())) {
             SoundPlayer.playSound(getContext(), SoundPlayer.VICTORY);
             stopGame();
+            timer.stop();
             finishDialog();
             return;
             //TODO: Hvorfor returneres der?
@@ -270,6 +271,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         if(intersects(ball, rectWall)) {
             SoundPlayer.playSound(getContext(), SoundPlayer.DEFEAT);
             stopGame();
+            timer.stop();
             defeatDialog();
         }
             if(sensorUpdatedEnabled) {before = now; }
