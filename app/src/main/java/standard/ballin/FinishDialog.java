@@ -2,6 +2,7 @@ package standard.ballin;
 
 import android.app.*;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.*;
 import android.widget.*;
 
@@ -20,7 +21,17 @@ public class FinishDialog {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.setCancelable(false);
-        dialog.setContentView(R.layout.finish_dialog);
+        int stars = bundle.getInt("stars");
+        switch (stars) {
+            case 1: dialog.setContentView(R.layout.finish_one_dialog);
+                    break;
+            case 2: dialog.setContentView(R.layout.finish_two_dialog);
+                    break;
+            case 3: dialog.setContentView(R.layout.finish_three_dialog);
+                    break;
+        }
+        Log.d("FinishDialog", "Stars in Finishdialog was set to: "+stars);
+        LevelsActivity.updateStarsForLevel(bundle);
 
         Button nextButton = (Button) dialog.findViewById(R.id.resume_button);
         nextButton.setOnClickListener(new View.OnClickListener() {

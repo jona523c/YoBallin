@@ -52,8 +52,7 @@ public class GameActivity extends FragmentActivity {
         }
         game = new Game(this, levelStrategy);
 
-        //TODO Set background of game
-        game.setBackgroundResource(R.drawable.ic_launcher_background);
+        game.setBackgroundColor(getResources().getColor(R.color.sand));
         game.newGame();
         setContentView(game);
     }

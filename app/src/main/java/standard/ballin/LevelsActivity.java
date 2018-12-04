@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import java.util.Map;
@@ -18,6 +19,7 @@ import java.util.Map;
 public class LevelsActivity extends AppCompatActivity {
     ImageView backButton;
     Map starMap;
+    static Button level;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,8 @@ public class LevelsActivity extends AppCompatActivity {
 
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         starMap = sharedPref.getAll();
+
+        level = (Button) findViewById(R.id.level1);
     }
 
     /**
@@ -76,5 +80,17 @@ public class LevelsActivity extends AppCompatActivity {
     protected void onPause () {
         MusicPlay.pauseAudio();
         super.onPause();
+    }
+
+    public static void updateStarsForLevel(Bundle bundle) {
+        int stars = bundle.getInt("stars");
+        switch (stars) {
+            case 1: level.setBackgroundResource(R.drawable.level_one_star_button);
+                    break;
+            case 2: level.setBackgroundResource(R.drawable.level_two_star_button);
+                    break;
+            case 3: level.setBackgroundResource(R.drawable.level_three_star_button);
+                    break;
+        }
     }
 }

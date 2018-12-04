@@ -88,7 +88,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         paint = new Paint();
         paint.setColor(Color.GREEN);
         paintWall = new Paint();
-        paintWall.setColor(Color.GRAY);
+        paintWall.setColor(getResources().getColor(R.color.dark_brown));
 
         Wall w = levelStrategy.getWall();
         rectWall = new Rect(w.getPosX(), w.getPosY(), w.getWallWidth()+w.getPosX(), w.getWallHeight()+w.getPosY());
@@ -288,7 +288,9 @@ public class Game extends ConstraintLayout implements SensorEventListener {
             SoundPlayer.playSound(getContext(), SoundPlayer.VICTORY);
             stopGame();
             timer.stop();
+            Log.d("Game", "Time before star calculation was: "+timer.getBase());
             stars = levelStrategy.calculateStars(timer.getBase());
+            Log.d("Game", "Stars for this level was calculated to: "+stars);
             SharedPreferences sharedPref = getContext().getSharedPreferences("stars", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putInt("stars", stars);
