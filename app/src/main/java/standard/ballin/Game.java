@@ -144,7 +144,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
 
         finishline = new ImageView(getContext());
         finishline.setId(R.id.finishline);
-        finishline.setBackgroundColor(Color.GREEN);
+        finishline.setImageResource(R.drawable.finishline);
         LayoutParams layoutFinishline = new LayoutParams(LayoutParams.MATCH_PARENT, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 35, getResources().getDisplayMetrics()));
         finishline.setLayoutParams(layoutFinishline);
 
