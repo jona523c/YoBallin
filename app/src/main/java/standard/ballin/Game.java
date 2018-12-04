@@ -81,7 +81,6 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         addView(ball, new ViewGroup.LayoutParams(ballWidth, ballHeight));
 
         initializeDrawings();
-        //TODO: PAUSE GAME AND RUN GAMEDIALOG
     }
 
     /**
@@ -306,11 +305,12 @@ public class Game extends ConstraintLayout implements SensorEventListener {
             Log.d("Game", "Stars for this level was calculated to: "+stars);
             SharedPreferences sharedPref = getContext().getSharedPreferences("stars", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putInt(levelStrategy.getLevel(), stars);
-            editor.apply();
+            if (sharedPref.getInt(levelStrategy.getLevel(), 0) < stars) {
+                editor.putInt(levelStrategy.getLevel(), stars);
+                editor.apply();
+            }
             finishDialog();
             return;
-            //TODO: Hvorfor returneres der?
         }
 
         for(Rect r : rectWalls) {

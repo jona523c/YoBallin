@@ -31,7 +31,6 @@ public class FinishDialog {
                     break;
         }
         Log.d("FinishDialog", "Stars in Finishdialog was set to: "+stars);
-        LevelsActivity.updateStarsForLevel(bundle);
 
         Button nextButton = (Button) dialog.findViewById(R.id.resume_button);
         nextButton.setOnClickListener(new View.OnClickListener() {
