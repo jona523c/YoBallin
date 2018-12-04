@@ -12,12 +12,12 @@ import standard.ballin.Wall;
  *
  * @author Frederik Nielsen
  */
-public class Level1Strategy implements LevelStrategy {
+public class Level2Strategy implements LevelStrategy {
     private Wall wall;
     private Context context;
     private ArrayList<Wall> walls;
 
-    public Level1Strategy(Context context) {
+    public Level2Strategy(Context context) {
         this.context = context;
         walls = new ArrayList<>();
         wall = new Wall(400, 1000, 100, 500);

@@ -93,12 +93,12 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         paintWall = new Paint();
         paintWall.setColor(getResources().getColor(R.color.dark_brown));
 
-        ArrayList<Wall> walls = levelStrategy.getWalls();
-        for(Wall w : walls) {
-            w.scalePosX(scaleWidthFromDpi);
-            w.scalePosY(scaleHeightFromDpi);
-            w.scaleWallHeight(scaleHeightFromDpi);
-            w.scaleWallWidth(scaleWidthFromDpi);
+        rectWalls = new ArrayList<>();
+        for(Wall w : levelStrategy.getWalls()) {
+           // w.scalePosX(scaleWidthFromDpi);
+           // w.scalePosY(scaleHeightFromDpi);
+           // w.scaleWallHeight(scaleHeightFromDpi);
+           // w.scaleWallWidth(scaleWidthFromDpi);
             rectWalls.add(new Rect(w.getPosX(), w.getPosY(), w.getWallWidth() + w.getPosX(), w.getWallHeight() + w.getPosY()));
         }
     }
@@ -294,7 +294,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         firsttime = false;}
 
         for(Rect r : rectWalls) {
-            canvas.drawRect(r, paintWall);
+          canvas.drawRect(r, paintWall);
         }
 
         if(rect.contains((int) ball.getTranslationX(), (int) ball.getTranslationY())) {
@@ -312,11 +312,14 @@ public class Game extends ConstraintLayout implements SensorEventListener {
             return;
             //TODO: Hvorfor returneres der?
         }
-        if(intersects(ball, rectWall)) {
-            SoundPlayer.playSound(getContext(), SoundPlayer.DEFEAT);
-            stopGame();
-            timer.stop();
-            defeatDialog();
+
+        for(Rect r : rectWalls) {
+            if (intersects(ball, r)) {
+                SoundPlayer.playSound(getContext(), SoundPlayer.DEFEAT);
+                stopGame();
+                timer.stop();
+                defeatDialog();
+            }
         }
             if(sensorUpdatedEnabled) {before = now; }
             if(!sensorUpdatedEnabled) {
