@@ -37,13 +37,13 @@ public class Level3Strategy implements LevelStrategy {
 
     @Override
     public String getLevel() {
-        return "1";
+        return "3";
     }
 
     @Override
     public int getStars() {
         SharedPreferences sharedPref = context.getSharedPreferences("stars", Context.MODE_PRIVATE);
-        return sharedPref.getInt("1", 0);
+        return sharedPref.getInt("3", 0);
     }
 
     @Override
