@@ -16,6 +16,8 @@ public class Level2Strategy implements LevelStrategy {
     private Wall wall;
     private Context context;
     private ArrayList<Wall> walls;
+    private int time3 = 5;
+    private int time2 = 10;
 
     public Level2Strategy(Context context) {
         this.context = context;
@@ -31,8 +33,8 @@ public class Level2Strategy implements LevelStrategy {
 
     @Override
     public int calculateStars(int time) {
-        if(time<5) return 3;
-        else if(time<10) return 2;
+        if(time<time3) return 3;
+        else if(time<time2) return 2;
         else return 1;
     }
 
@@ -50,6 +52,16 @@ public class Level2Strategy implements LevelStrategy {
     @Override
     public ArrayList<Wall> getWalls() {
         return walls;
+    }
+
+    @Override
+    public int getTime2() {
+        return time2;
+    }
+
+    @Override
+    public int getTime3() {
+        return time3;
     }
 
 }

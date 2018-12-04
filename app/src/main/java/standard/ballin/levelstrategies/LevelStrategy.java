@@ -20,4 +20,8 @@ public interface LevelStrategy {
     public int getStars();
 
     public ArrayList<Wall> getWalls();
+
+    public int getTime2();
+
+    public int getTime3();
 }
