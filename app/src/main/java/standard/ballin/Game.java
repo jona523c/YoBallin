@@ -49,6 +49,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
     private long before;
     private long now = System.currentTimeMillis();
     private int stars;
+    private int seconds;
     private boolean firsttime = true;
 
     /**
@@ -146,6 +147,12 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         timer = new Chronometer(getContext());
         timer.setId(R.id.timer);
         timer.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics()));
+        timer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+            @Override
+            public void onChronometerTick(Chronometer chronometer) {
+                seconds++;
+            }
+        });
 
         levelText = new TextView(getContext());
         levelText.setId(R.id.levelText);
@@ -288,8 +295,8 @@ public class Game extends ConstraintLayout implements SensorEventListener {
             SoundPlayer.playSound(getContext(), SoundPlayer.VICTORY);
             stopGame();
             timer.stop();
-            Log.d("Game", "Time before star calculation was: "+timer.getBase());
-            stars = levelStrategy.calculateStars(timer.getBase());
+            Log.d("Game", "Time before star calculation was: "+(seconds-4));
+            stars = levelStrategy.calculateStars(seconds-4);
             Log.d("Game", "Stars for this level was calculated to: "+stars);
             SharedPreferences sharedPref = getContext().getSharedPreferences("stars", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();

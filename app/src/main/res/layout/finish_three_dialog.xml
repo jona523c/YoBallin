@@ -50,7 +50,7 @@
         app:layout_constraintTop_toTopOf="@+id/a3" />
 
     <Button
-        android:id="@+id/restart_button"
+        android:id="@+id/resume_button"
         style="@style/buttons_text"
         android:layout_width="160dp"
         android:layout_height="55dp"
@@ -80,7 +80,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/restart_button"
+        app:layout_constraintTop_toBottomOf="@+id/resume_button"
         app:layout_constraintVertical_bias="0.111" />
 
     <ImageView
@@ -88,13 +88,13 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.424"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView5"
-        app:srcCompat="@android:drawable/star_on" />
+        app:srcCompat="@android:drawable/star_on"
+        tools:layout_editor_absoluteY="8dp" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -103,6 +103,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.581"
         app:layout_constraintStart_toStartOf="parent"
@@ -115,6 +116,7 @@
         android:layout_height="72dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"

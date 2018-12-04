@@ -24,9 +24,9 @@ public class Level1Strategy implements LevelStrategy {
     }
 
     @Override
-    public int calculateStars(Long time) {
-        if(time<100) return 3;
-        else if(time<200) return 2;
+    public int calculateStars(int time) {
+        if(time<5) return 3;
+        else if(time<10) return 2;
         else return 1;
     }
 

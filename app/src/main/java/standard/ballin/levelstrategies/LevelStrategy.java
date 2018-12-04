@@ -11,7 +11,7 @@ public interface LevelStrategy {
 
     public Wall getWall();
 
-    public int calculateStars(Long time);
+    public int calculateStars(int time);
 
     public String getLevel();
 

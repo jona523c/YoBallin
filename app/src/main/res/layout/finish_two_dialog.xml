@@ -50,7 +50,7 @@
         app:layout_constraintTop_toTopOf="@+id/a3" />
 
     <Button
-        android:id="@+id/restart_button"
+        android:id="@+id/resume_button"
         style="@style/buttons_text"
         android:layout_width="160dp"
         android:layout_height="55dp"
@@ -80,7 +80,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/restart_button"
+        app:layout_constraintTop_toBottomOf="@+id/resume_button"
         app:layout_constraintVertical_bias="0.111" />
 
     <ImageView
