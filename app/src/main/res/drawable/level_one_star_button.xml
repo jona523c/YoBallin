@@ -13,7 +13,7 @@
                 android:right="3dp">
                 <shape>
                     <corners android:radius="1dp" />
-                    <solid android:color="@color/dark_brown" />
+                    <solid android:color="@color/white" />
                 </shape>
             </item>
             <item
@@ -21,7 +21,7 @@
                 android:top="10dp"
                 android:width="40dp"
                 android:height="40dp">
-                <bitmap android:src="@android:drawable/star_on" ></bitmap>
+                <bitmap android:src="@drawable/star_on" ></bitmap>
             </item>
             <item
                 android:left="85dp"
