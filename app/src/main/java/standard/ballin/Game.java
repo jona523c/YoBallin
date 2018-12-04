@@ -94,10 +94,10 @@ public class Game extends ConstraintLayout implements SensorEventListener {
 
         rectWalls = new ArrayList<>();
         for(Wall w : levelStrategy.getWalls()) {
-           // w.scalePosX(scaleWidthFromDpi);
-           // w.scalePosY(scaleHeightFromDpi);
-           // w.scaleWallHeight(scaleHeightFromDpi);
-           // w.scaleWallWidth(scaleWidthFromDpi);
+            w.scalePosX(scaleWidthFromDpi/21431.25f);
+            w.scalePosY(scaleHeightFromDpi/21578.752f);
+            w.scaleWallHeight(scaleHeightFromDpi/21578.752f);
+            w.scaleWallWidth(scaleWidthFromDpi/21431.25f);
             rectWalls.add(new Rect(w.getPosX(), w.getPosY(), w.getWallWidth() + w.getPosX(), w.getWallHeight() + w.getPosY()));
         }
     }

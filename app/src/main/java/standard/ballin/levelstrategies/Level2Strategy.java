@@ -20,8 +20,9 @@ public class Level2Strategy implements LevelStrategy {
     public Level2Strategy(Context context) {
         this.context = context;
         walls = new ArrayList<>();
-        wall = new Wall(400, 1000, 100, 500);
+        wall = new Wall(600, 1000, 100, 500);
         walls.add(wall);
+        walls.add(new Wall(0, 1500, 150, 800));
     }
 
     public Wall getWall() {

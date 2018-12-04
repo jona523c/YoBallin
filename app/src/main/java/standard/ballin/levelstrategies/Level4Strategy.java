@@ -20,8 +20,12 @@ public class Level4Strategy implements LevelStrategy {
     public Level4Strategy(Context context) {
         this.context = context;
         walls = new ArrayList<>();
-        wall = new Wall(400, 1000, 100, 500);
+        wall = new Wall(0, 600, 100, 400);
         walls.add(wall);
+        walls.add(new Wall(700, 600, 100, 400));
+        walls.add(new Wall(0, 800, 400, 800));
+        walls.add(new Wall(700, 1500, 50, 400));
+        walls.add(new Wall(0, 1700, 50, 800));
     }
 
     public Wall getWall() {

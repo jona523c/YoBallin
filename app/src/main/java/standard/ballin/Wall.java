@@ -27,11 +27,11 @@ public class Wall {
     }
 
     public void scalePosX(float scale) {
-        this.posX = (int) (posX*scale);
+        this.posX = (int) (getPosX()*scale);
     }
 
     public void scalePosY(float scale) {
-        this.posY = (int) (posY*scale);
+        this.posY = (int) (getPosY()*scale);
     }
 
     public int getWallWidth() {
