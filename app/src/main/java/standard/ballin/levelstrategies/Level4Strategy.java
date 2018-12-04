@@ -12,12 +12,12 @@ import standard.ballin.Wall;
  *
  * @author Frederik Nielsen
  */
-public class Level1Strategy implements LevelStrategy {
+public class Level4Strategy implements LevelStrategy {
     private Wall wall;
     private Context context;
     private ArrayList<Wall> walls;
 
-    public Level1Strategy(Context context) {
+    public Level4Strategy(Context context) {
         this.context = context;
         walls = new ArrayList<>();
         wall = new Wall(400, 1000, 100, 500);
@@ -37,13 +37,13 @@ public class Level1Strategy implements LevelStrategy {
 
     @Override
     public String getLevel() {
-        return "1";
+        return "4";
     }
 
     @Override
     public int getStars() {
         SharedPreferences sharedPref = context.getSharedPreferences("stars", Context.MODE_PRIVATE);
-        return sharedPref.getInt("1", 0);
+        return sharedPref.getInt("4", 0);
     }
 
     @Override

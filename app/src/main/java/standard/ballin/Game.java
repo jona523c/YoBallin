@@ -16,6 +16,7 @@ import android.widget.*;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.Timer;
 
 import standard.ballin.levelstrategies.LevelStrategy;
@@ -36,6 +37,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
     private Chronometer timer;
     private Display display;
     private Rect rect, rectWall;
+    private ArrayList<Rect> rectWalls;
     private LevelStrategy levelStrategy;
     private Paint paint, paintWall;
     private SensorManager sensorManager;
@@ -91,11 +93,14 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         paintWall = new Paint();
         paintWall.setColor(getResources().getColor(R.color.dark_brown));
 
-        Wall w = levelStrategy.getWall();
-        rectWall = new Rect(w.getPosX(), w.getPosY(), w.getWallWidth()+w.getPosX(), w.getWallHeight()+w.getPosY());
-
-        // Cannot get finishline yet for some reason.
-        //rect = new Rect(finishline.getLeft(), finishline.getTop(), finishline.getRight() , finishline.getBottom());
+        rectWalls = new ArrayList<>();
+        for(Wall w : levelStrategy.getWalls()) {
+           // w.scalePosX(scaleWidthFromDpi);
+           // w.scalePosY(scaleHeightFromDpi);
+           // w.scaleWallHeight(scaleHeightFromDpi);
+           // w.scaleWallWidth(scaleWidthFromDpi);
+            rectWalls.add(new Rect(w.getPosX(), w.getPosY(), w.getWallWidth() + w.getPosX(), w.getWallHeight() + w.getPosY()));
+        }
     }
 
     /**
@@ -285,11 +290,12 @@ public class Game extends ConstraintLayout implements SensorEventListener {
             gameDialog();
             timer.stop();
             stopGame();
+            rect = new Rect(finishline.getLeft(), finishline.getTop(), finishline.getRight() , finishline.getBottom());
         firsttime = false;}
 
-        // TODO graphical finishline instead of just green finishline.
-        rect = new Rect(finishline.getLeft(), finishline.getTop(), finishline.getRight() , finishline.getBottom());
-        canvas.drawRect(rectWall, paintWall);
+        for(Rect r : rectWalls) {
+          canvas.drawRect(r, paintWall);
+        }
 
         if(rect.contains((int) ball.getTranslationX(), (int) ball.getTranslationY())) {
             SoundPlayer.playSound(getContext(), SoundPlayer.VICTORY);
@@ -300,17 +306,20 @@ public class Game extends ConstraintLayout implements SensorEventListener {
             Log.d("Game", "Stars for this level was calculated to: "+stars);
             SharedPreferences sharedPref = getContext().getSharedPreferences("stars", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putInt("stars", stars);
+            editor.putInt(levelStrategy.getLevel(), stars);
             editor.apply();
             finishDialog();
             return;
             //TODO: Hvorfor returneres der?
         }
-        if(intersects(ball, rectWall)) {
-            SoundPlayer.playSound(getContext(), SoundPlayer.DEFEAT);
-            stopGame();
-            timer.stop();
-            defeatDialog();
+
+        for(Rect r : rectWalls) {
+            if (intersects(ball, r)) {
+                SoundPlayer.playSound(getContext(), SoundPlayer.DEFEAT);
+                stopGame();
+                timer.stop();
+                defeatDialog();
+            }
         }
             if(sensorUpdatedEnabled) {before = now; }
             if(!sensorUpdatedEnabled) {
