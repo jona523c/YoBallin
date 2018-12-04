@@ -10,10 +10,9 @@ import android.widget.*;
  * @author Jonas Madsen
  */
 public class GameDialog {
-    private int oneStar, twoStar, threeStar;
+    private int twoStar, threeStar;
 
-    public GameDialog(int oneStar, int twoStar, int threeStar) {
-        this.oneStar = oneStar;
+    public GameDialog(int twoStar, int threeStar) {
         this.twoStar = twoStar;
         this.threeStar = threeStar;
     }
@@ -28,14 +27,11 @@ public class GameDialog {
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.setContentView(R.layout.game_dialog);
 
-        TextView oneStarText = (TextView) dialog.findViewById(R.id.oneStar);
-        oneStarText.setText(oneStar+":00");
-
         TextView twoStarText = (TextView) dialog.findViewById(R.id.twoStar);
-        twoStarText.setText(twoStar+":00");
+        twoStarText.setText("2: "+twoStar+":00");
 
         TextView threeStarText = (TextView) dialog.findViewById(R.id.threeStar);
-        threeStarText.setText(threeStar+":00");
+        threeStarText.setText("3: "+threeStar+":00");
 
         dialog.show();
         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {

@@ -115,7 +115,7 @@ public class GameActivity extends FragmentActivity {
     }
 
     public void gameDialog() {
-        GameDialog game = new GameDialog(1, 2, 3);
+        GameDialog game = new GameDialog(levelStrategy.getTime2(), levelStrategy.getTime3());
         game.showDialog(this);
     }
 
