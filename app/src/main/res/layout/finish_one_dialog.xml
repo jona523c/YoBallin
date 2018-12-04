@@ -83,31 +83,41 @@
         app:layout_constraintTop_toBottomOf="@+id/resume_button"
         app:layout_constraintVertical_bias="0.111" />
 
+    <android.support.v4.widget.Space
+        android:id="@+id/marginSpacer"
+        android:layout_width="0dp"
+        android:layout_height="5dp"
+        android:layout_marginRight="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@id/imageView5"
+        app:layout_constraintRight_toRightOf="@id/imageView5" />
+
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.424"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView5"
-        app:srcCompat="@android:drawable/star_on" />
+        android:layout_marginEnd="66dp"
+        android:layout_marginBottom="4dp"
+        android:background="@android:drawable/star_on"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/marginSpacer" />
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="66dp"
         android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.581"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/star_off" />
+        android:layout_marginBottom="4dp"
+        android:background="@android:drawable/star_off"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/marginSpacer" />
 
     <ImageView
         android:id="@+id/imageView5"
@@ -119,7 +129,7 @@
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/star_off" />
+        android:background="@android:drawable/star_off" />
 
     <TextView
         android:id="@+id/textView4"
