@@ -3,6 +3,8 @@ package standard.ballin.levelstrategies;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.ArrayList;
+
 import standard.ballin.Wall;
 
 /**
@@ -13,10 +15,13 @@ import standard.ballin.Wall;
 public class Level1Strategy implements LevelStrategy {
     private Wall wall;
     private Context context;
+    private ArrayList<Wall> walls;
 
     public Level1Strategy(Context context) {
         this.context = context;
         wall = new Wall(400, 1000, 100, 500);
+
+        walls.add(wall);
     }
 
     public Wall getWall() {
@@ -39,6 +44,11 @@ public class Level1Strategy implements LevelStrategy {
     public int getStars() {
         SharedPreferences sharedPref = context.getSharedPreferences("stars", Context.MODE_PRIVATE);
         return sharedPref.getInt("1", 0);
+    }
+
+    @Override
+    public ArrayList<Wall> getWalls() {
+        return walls;
     }
 
 }
