@@ -8,6 +8,9 @@ import android.view.WindowManager;
 import android.widget.Chronometer;
 
 import standard.ballin.levelstrategies.Level1Strategy;
+import standard.ballin.levelstrategies.Level2Strategy;
+import standard.ballin.levelstrategies.Level3Strategy;
+import standard.ballin.levelstrategies.Level4Strategy;
 import standard.ballin.levelstrategies.LevelStrategy;
 
 /**
@@ -45,6 +48,19 @@ public class GameActivity extends FragmentActivity {
                 levelStrategy = new Level1Strategy(this);
                 break;
             }
+            case 2: {
+                levelStrategy = new Level2Strategy(this);
+                break;
+            }
+            case 3: {
+                levelStrategy = new Level3Strategy(this);
+                break;
+            }
+            case 4: {
+                levelStrategy = new Level4Strategy(this);
+                break;
+            }
+
 
             default: {
                 break;
