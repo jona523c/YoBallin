@@ -418,6 +418,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
      */
     public void restartGame() {
         resetChronometer();
+        seconds = 0;
         gameover = false;
         ball.setPosX(-0.006f);
         ball.setPosY(-0.03f);
