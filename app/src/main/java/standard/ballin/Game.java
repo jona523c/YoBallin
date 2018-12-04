@@ -53,6 +53,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
     private int stars;
     private int seconds;
     private boolean firsttime = true;
+    private boolean gameover = false;
 
     /**
      * Initialize a game object, which contains the level that is selected.
@@ -313,14 +314,17 @@ public class Game extends ConstraintLayout implements SensorEventListener {
             return;
         }
 
-        for(Rect r : rectWalls) {
-            if (intersects(ball, r)) {
+        if(!gameover) {
+            for (Rect r : rectWalls) {
+                if (intersects(ball, r)) {
                 SoundPlayer.playSound(getContext(), SoundPlayer.DEFEAT);
                 stopGame();
                 timer.stop();
                 defeatDialog();
+                gameover = true;
+                }
             }
-        }
+         }
             if(sensorUpdatedEnabled) {before = now; }
             if(!sensorUpdatedEnabled) {
                start = System.currentTimeMillis()-before;
@@ -414,6 +418,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
      */
     public void restartGame() {
         resetChronometer();
+        gameover = false;
         ball.setPosX(-0.006f);
         ball.setPosY(-0.03f);
         startGame();
