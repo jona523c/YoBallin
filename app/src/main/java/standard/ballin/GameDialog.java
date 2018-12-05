@@ -28,10 +28,10 @@ public class GameDialog {
         dialog.setContentView(R.layout.game_dialog);
 
         TextView twoStarText = (TextView) dialog.findViewById(R.id.twoStar);
-        twoStarText.setText("2: "+twoStar+":00");
+        twoStarText.setText("0:"+twoStar);
 
         TextView threeStarText = (TextView) dialog.findViewById(R.id.threeStar);
-        threeStarText.setText("3: "+threeStar+":00");
+        threeStarText.setText("0:0"+threeStar);
 
         dialog.show();
         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
