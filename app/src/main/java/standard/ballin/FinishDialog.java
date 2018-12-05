@@ -1,6 +1,7 @@
 package standard.ballin;
 
 import android.app.*;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.*;
@@ -16,7 +17,7 @@ public class FinishDialog {
      * @param activity activity calling the dialog
      * @param bundle
      */
-    public void showDialog(final Activity activity, Bundle bundle){
+    public void showDialog(final Activity activity, Bundle bundle, final Bundle bundle2){
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
@@ -38,6 +39,10 @@ public class FinishDialog {
             public void onClick(View v) {
                 SoundPlayer.playSound(activity, SoundPlayer.BUTTON);
                 dialog.dismiss();
+
+                Intent intent = new Intent(activity, GameActivity.class);
+                intent.putExtra("selectedLevel", bundle2.getInt("level"));
+                activity.startActivity(intent);
                 activity.finish();
             }
         });

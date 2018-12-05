@@ -235,9 +235,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
      *  Opens finishDialog
      */
     private void finishDialog() {
-        Bundle bundle = new Bundle();
-        bundle.putInt("stars", stars);
-        ((GameActivity) getContext()).finishDialog(stars);
+        ((GameActivity) getContext()).finishDialog(stars, Integer.parseInt(levelStrategy.getLevel()));
     }
 
     private void gameDialog() {
