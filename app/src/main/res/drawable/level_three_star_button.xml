@@ -31,10 +31,10 @@
                 <bitmap android:src="@drawable/star_on" ></bitmap>
             </item>
             <item
-                android:left="49dp"
-                android:top="-8dp"
-                android:width="60dp"
-                android:height="60dp">
+                android:left="60dp"
+                android:top="10dp"
+                android:width="40dp"
+                android:height="40dp">
                 <bitmap android:src="@drawable/star_on" ></bitmap>
             </item>
         </layer-list>
