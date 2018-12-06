@@ -31,8 +31,6 @@ import com.google.android.gms.signin.SignInOptions;
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
     ImageView soundButton, settingsButton, trophyButton;
     private boolean soundToggle;
-    private static final int RC_LEADERBOARD_UI = 9004;
-    private GoogleApiClient googleApiClient;
 
 
     @Override
@@ -78,44 +76,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 startActivity(intent);
             }
         });
-
-        final GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-        googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, this).addApi(Auth.GOOGLE_SIGN_IN_API, gso).build();
-
         // Trophy shortcut starts ???
         trophyButton = findViewById(R.id.trophyView);
         trophyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                // TODO implement google signin and leaderboard
-                /*Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
-                startActivityForResult(signInIntent, RC_LEADERBOARD_UI);
-                GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(signInIntent);
-                if (result != null && result.isSuccess()) {
-                    Games.getLeaderboardsClient(MainActivity.this, result.getSignInAccount())
-                            .getLeaderboardIntent(getString(R.string.leaderboard_id))
-                            .addOnSuccessListener(new OnSuccessListener<Intent>() {
-                                @Override
-                                public void onSuccess(Intent intent) {
-                                    startActivityForResult(intent, RC_LEADERBOARD_UI);
-                                }
-                            });
-                } else {
-                    GoogleSignIn.requestPermissions(MainActivity.this, 1, GoogleSignIn.getLastSignedInAccount(MainActivity.this),Games.SCOPE_GAMES_LITE);
-                    if(GoogleSignIn.hasPermissions(GoogleSignIn.getLastSignedInAccount(MainActivity.this), Games.SCOPE_GAMES_LITE)) {
-                        Games.getLeaderboardsClient(MainActivity.this, GoogleSignIn.getLastSignedInAccount(MainActivity.this))
-                                .getLeaderboardIntent(getString(R.string.leaderboard_id))
-                                .addOnSuccessListener(new OnSuccessListener<Intent>() {
-                                    @Override
-                                    public void onSuccess(Intent intent) {
-                                        startActivityForResult(intent, RC_LEADERBOARD_UI);
-                                    }
-                                });
-                    }
-                }*/
             }
         });
     }
@@ -139,6 +105,11 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onPause();
 
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
 
     @Override
