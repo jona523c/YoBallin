@@ -228,12 +228,15 @@ public class Game extends ConstraintLayout implements SensorEventListener {
     }
 
     /**
-     *  Opens finishDialog
+     *  Calls the finishDialog method in GameActivity
      */
     private void finishDialog() {
         ((GameActivity) getContext()).finishDialog(stars, Integer.parseInt(levelStrategy.getLevel()));
     }
 
+    /**
+     *  Calls the gameDialog method in GameActivity
+     */
     private void gameDialog() {
         ((GameActivity) getContext()).gameDialog();
     }
@@ -339,7 +342,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
     }
 
     /**
-     * Opens defeatDialog
+     *  Calls the defeatDialog method in GameActivity
      */
     private void defeatDialog() {
         ((GameActivity) getContext()).defeatDialog();
@@ -420,11 +423,17 @@ public class Game extends ConstraintLayout implements SensorEventListener {
 
     }
 
+    /**
+     *  Resets the timer.
+     */
     public void resetChronometer() {
         timer.setBase(0);
         lastPause = 0;
     }
 
+    /**
+     *  Starts a new game. Only used when the game is first created.
+     */
     public void newGame() {
         timer.setBase(SystemClock.elapsedRealtime());
         timer.start();

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import standard.ballin.Wall;
 
 /**
- * Implementation of level 1.
+ * Implementation of level 3.
  *
  * @author Frederik Nielsen
  */

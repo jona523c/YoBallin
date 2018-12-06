@@ -67,9 +67,14 @@ public class GameActivity extends FragmentActivity {
         setContentView(game);
     }
 
+    /**
+     * Gets the windowManager.
+     * @return windowManager
+     */
     public WindowManager getWindowManager() {
         return windowManager;
     }
+
 
     @Override
     protected void onResume() {
@@ -90,6 +95,11 @@ public class GameActivity extends FragmentActivity {
         game.stopGame();
     }
 
+    /**
+     * Opens the finishdialog.
+     * @param stars stars gotten from the current level.
+     * @param level current level being played.
+     */
     public void finishDialog(int stars, int level) {
         FinishDialog finish = new FinishDialog();
         Bundle bundle = new Bundle();
@@ -99,17 +109,26 @@ public class GameActivity extends FragmentActivity {
         finish.showDialog(this, bundle, bundle2);
     }
 
+    /**
+     * Opens the pauseDialog.
+     */
     public void pauseDialog() {
         PauseDialog pause = new PauseDialog();
         pause.showDialog(this);
 
     }
 
+    /**
+     * Opens the defeatDialog.
+     */
     public void defeatDialog() {
         DefeatDialog defeat = new DefeatDialog();
         defeat.showDialog(this);
     }
 
+    /**
+     * Opens the gameDialog.
+     */
     public void gameDialog() {
         GameDialog game = new GameDialog(levelStrategy.getTime2(), levelStrategy.getTime3());
         game.showDialog(this);

@@ -26,10 +26,6 @@ public class Level1Strategy implements LevelStrategy {
         walls.add(wall);
     }
 
-    public Wall getWall() {
-        return wall;
-    }
-
     @Override
     public int calculateStars(int time) {
         if(time<time3) return 3;

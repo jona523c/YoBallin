@@ -18,34 +18,58 @@ public class Wall {
         this.posY = posY;
     }
 
+    /**
+     *  scales the wallWidth to fit all screens.
+     */
     public void scaleWallWidth(float scale) {
         this.wallWidth = (int) (wallWidth*scale);
     }
 
+    /**
+     *  scales the wallHeight to fit all screens.
+     */
     public void scaleWallHeight(float scale) {
         this.wallHeight = (int) (wallHeight*scale);
     }
 
+    /**
+     *  scales the posX to fit all screens.
+     */
     public void scalePosX(float scale) {
         this.posX = (int) (getPosX()*scale);
     }
 
+    /**
+     *  scales the posY to fit all screens.
+     */
     public void scalePosY(float scale) {
         this.posY = (int) (getPosY()*scale);
     }
 
+    /**
+     *  Gets the wallWidth.
+     */
     public int getWallWidth() {
         return wallWidth;
     }
 
+    /**
+     *  Gets the wallHeight.
+     */
     public int getWallHeight() {
         return wallHeight;
     }
 
+    /**
+     *  Gets the posX.
+     */
     public int getPosX() {
         return posX;
     }
 
+    /**
+     *  Gets the posY.
+     */
     public int getPosY() {
         return posY;
     }

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import standard.ballin.Wall;
 
 /**
- * Implementation of level 1.
+ * Implementation of level 4.
  *
  * @author Frederik Nielsen
  */
@@ -18,6 +18,7 @@ public class Level4Strategy implements LevelStrategy {
     private ArrayList<Wall> walls;
     private int time3 = 5;
     private int time2 = 10;
+
 
     public Level4Strategy(Context context) {
         this.context = context;
