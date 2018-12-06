@@ -14,8 +14,7 @@ import android.widget.*;
  * @author Jonas Madsen
  */
 public class MainActivity extends AppCompatActivity {
-    ImageView soundButton;
-    ImageView settingsButton;
+    ImageView soundButton, settingsButton, trophyButton;
     private boolean soundToggle;
 
     @Override
@@ -59,6 +58,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent (MainActivity.this, SettingsActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        // Trophy shortcut starts ???
+        trophyButton = findViewById(R.id.trophyView);
+        trophyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO: do shit
             }
         });
     }
