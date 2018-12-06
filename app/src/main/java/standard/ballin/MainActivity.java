@@ -60,14 +60,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        // Trophy shortcut starts ???
-        trophyButton = findViewById(R.id.trophyView);
-        trophyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
     }
 
     @Override

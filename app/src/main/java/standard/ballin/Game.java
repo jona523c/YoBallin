@@ -24,6 +24,7 @@ import static java.lang.StrictMath.abs;
  *  Game class: The actual game, which is the content view when GameActivity is opened.
  * @author Frederik Nielsen
  * Frederik Nielsen: Main author
+ * Jonas Madsen: Changed timer to display seconds
  */
 public class Game extends ConstraintLayout implements SensorEventListener {
     private Sensor accelerometer;
