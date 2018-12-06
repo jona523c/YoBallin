@@ -187,7 +187,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         set.connect(timer.getId(),ConstraintSet.RIGHT,ConstraintSet.PARENT_ID,ConstraintSet.RIGHT,0);
         set.setHorizontalBias(timer.getId(),0.5f);
 
-        set.connect(levelText.getId(),ConstraintSet.TOP,timer.getId(),ConstraintSet.BOTTOM,0);
+        set.connect(levelText.getId(),ConstraintSet.TOP,ConstraintSet.PARENT_ID, ConstraintSet.TOP,(int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics()));
         set.connect(levelText.getId(),ConstraintSet.LEFT,ConstraintSet.PARENT_ID,ConstraintSet.LEFT,0);
         set.connect(levelText.getId(),ConstraintSet.RIGHT,ConstraintSet.PARENT_ID,ConstraintSet.RIGHT,0);
         set.setHorizontalBias(levelText.getId(),0.5f);

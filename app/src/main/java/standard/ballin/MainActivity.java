@@ -15,6 +15,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.auth.api.signin.GoogleSignInStatusCodes;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             }
         });
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        final GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
         googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, this).addApi(Auth.GOOGLE_SIGN_IN_API, gso).build();
@@ -90,10 +91,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             public void onClick(View view) {
 
                 // TODO implement google signin and leaderboard
-               /* Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
+                /*Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
                 startActivityForResult(signInIntent, RC_LEADERBOARD_UI);
                 GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(signInIntent);
-                if(result.isSuccess()) {
+                if (result != null && result.isSuccess()) {
                     Games.getLeaderboardsClient(MainActivity.this, result.getSignInAccount())
                             .getLeaderboardIntent(getString(R.string.leaderboard_id))
                             .addOnSuccessListener(new OnSuccessListener<Intent>() {
@@ -103,7 +104,17 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                                 }
                             });
                 } else {
-                    // sign in unsuccessful
+                    GoogleSignIn.requestPermissions(MainActivity.this, 1, GoogleSignIn.getLastSignedInAccount(MainActivity.this),Games.SCOPE_GAMES_LITE);
+                    if(GoogleSignIn.hasPermissions(GoogleSignIn.getLastSignedInAccount(MainActivity.this), Games.SCOPE_GAMES_LITE)) {
+                        Games.getLeaderboardsClient(MainActivity.this, GoogleSignIn.getLastSignedInAccount(MainActivity.this))
+                                .getLeaderboardIntent(getString(R.string.leaderboard_id))
+                                .addOnSuccessListener(new OnSuccessListener<Intent>() {
+                                    @Override
+                                    public void onSuccess(Intent intent) {
+                                        startActivityForResult(intent, RC_LEADERBOARD_UI);
+                                    }
+                                });
+                    }
                 }*/
             }
         });
@@ -125,7 +136,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     @Override
     protected void onPause () {
         MusicPlay.pauseAudio();
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onPause();
+
     }
 
     @Override
@@ -133,7 +146,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         Intent music = new Intent(this, MusicPlay.class);
         stopService(music);
         SoundPlayer.release();
-        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onDestroy();
     }
 

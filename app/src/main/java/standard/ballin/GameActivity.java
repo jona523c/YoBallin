@@ -21,8 +21,6 @@ import standard.ballin.levelstrategies.LevelStrategy;
  */
 public class GameActivity extends FragmentActivity {
     private static Game game;
-    private SensorManager sensorManager;
-    private Chronometer chronometer;
     private WindowManager windowManager;
     private LevelStrategy levelStrategy;
 
@@ -39,7 +37,6 @@ public class GameActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -91,9 +88,9 @@ public class GameActivity extends FragmentActivity {
     protected void onPause() {
         super.onPause();
         MusicPlay.pauseAudio();
-
-        game.stopGame();
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        game.stopGame();
     }
 
     public void finishDialog(int stars, int level) {
@@ -124,9 +121,5 @@ public class GameActivity extends FragmentActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
-        game.stopGame();
-        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 }

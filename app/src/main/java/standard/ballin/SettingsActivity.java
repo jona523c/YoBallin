@@ -121,6 +121,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     protected void onPause () {
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onPause();
     }
 

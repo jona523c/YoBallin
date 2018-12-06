@@ -92,7 +92,6 @@ public class LevelsActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     @Override
@@ -112,6 +111,7 @@ public class LevelsActivity extends AppCompatActivity {
     @Override
     protected void onPause () {
         MusicPlay.pauseAudio();
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onPause();
     }
 
