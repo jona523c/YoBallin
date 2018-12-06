@@ -8,7 +8,7 @@
 
     <ImageView
         android:id="@+id/dark_brown_box"
-        android:layout_width="218dp"
+        android:layout_width="263dp"
         android:layout_height="219dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
@@ -23,7 +23,7 @@
 
     <ImageView
         android:id="@+id/white_box"
-        android:layout_width="209dp"
+        android:layout_width="254dp"
         android:layout_height="210dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -52,26 +52,26 @@
         tools:textAlignment="center" />
 
     <TextView
-        android:id="@+id/twoStar"
+        android:id="@+id/threeStars"
         style="@style/dialog_title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="89dp"
         android:text="@string/Timer"
         app:layout_constraintStart_toStartOf="@+id/white_box"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/threeStar"
+        android:id="@+id/twoStars"
         style="@style/dialog_title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="13dp"
         android:text="@string/Timer"
         app:layout_constraintStart_toStartOf="@+id/white_box"
-        app:layout_constraintTop_toBottomOf="@+id/twoStar" />
+        app:layout_constraintTop_toBottomOf="@+id/threeStars" />
 
     <ImageView
         android:id="@+id/star1of3"
@@ -82,50 +82,56 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/white_box"
         app:layout_constraintEnd_toEndOf="@+id/white_box"
-        app:layout_constraintHorizontal_bias="0.197"
-        app:layout_constraintStart_toEndOf="@+id/twoStar"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/threeStars"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.524" />
+        app:layout_constraintVertical_bias="0.526" />
 
     <ImageView
         android:id="@+id/star2of3"
         style="@style/star_on"
-        android:layout_marginStart="72dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/white_box"
-        app:layout_constraintStart_toEndOf="@+id/twoStar"
+        app:layout_constraintEnd_toEndOf="@+id/white_box"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.524" />
+        app:layout_constraintVertical_bias="0.526" />
 
     <ImageView
         android:id="@+id/star3of3"
         style="@style/star_on"
-        android:layout_marginStart="48dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/white_box"
-        app:layout_constraintStart_toEndOf="@+id/twoStar"
+        app:layout_constraintEnd_toStartOf="@+id/star2of3"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/star1of3"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.524" />
+        app:layout_constraintVertical_bias="0.526" />
 
     <ImageView
         android:id="@+id/star1of2"
         style="@style/star_on"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/white_box"
-        app:layout_constraintHorizontal_bias="0.289"
-        app:layout_constraintStart_toEndOf="@+id/threeStar"
-        app:layout_constraintTop_toBottomOf="@+id/star1of3" />
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/white_box"
+        app:layout_constraintEnd_toStartOf="@+id/star2of2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/twoStars"
+        app:layout_constraintTop_toBottomOf="@+id/star1of3"
+        app:layout_constraintVertical_bias="0.071" />
 
     <ImageView
         android:id="@+id/star2of2"
         style="@style/star_on"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="69dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/white_box"
         app:layout_constraintEnd_toEndOf="@+id/white_box"
-        app:layout_constraintTop_toBottomOf="@+id/star2of3" />
+        app:layout_constraintTop_toBottomOf="@+id/star3of3"
+        app:layout_constraintVertical_bias="0.071" />
 
 </android.support.constraint.ConstraintLayout>

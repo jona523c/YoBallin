@@ -10,7 +10,7 @@ import standard.ballin.Wall;
  * @author Frederik Nielsen
  */
 public interface LevelStrategy {
-
+    // TODO: COMMENTS
     public Wall getWall();
 
     public int calculateStars(int time);

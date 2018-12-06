@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BallinTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/light_brown</item>
+        <item name="android:colorBackground">@color/sand</item>
+        <item name="android:navigationBarColor">@color/light_brown</item>
+        <item name="android:statusBarColor">@color/light_brown</item>
+        <item name="colorAccent">@color/dark_red</item>
+        <item name="android:textColorSecondaryInverse">@color/secondary_text_material_light</item>
+        <item name="android:textColorSecondary">@color/text_color_secondary</item>
+    </style>
+</resources>

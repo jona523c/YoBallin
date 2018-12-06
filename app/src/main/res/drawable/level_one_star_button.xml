@@ -18,21 +18,21 @@
             </item>
             <item
                 android:left="35dp"
-                android:top="10dp"
+                android:top="7dp"
                 android:width="40dp"
                 android:height="40dp">
                 <bitmap android:src="@drawable/star_on" />
             </item>
             <item
                 android:left="85dp"
-                android:top="10dp"
+                android:top="9dp"
                 android:width="40dp"
                 android:height="40dp">
                 <bitmap android:src="@android:drawable/star_off" />
             </item>
             <item
                 android:left="60dp"
-                android:top="10dp"
+                android:top="9dp"
                 android:width="40dp"
                 android:height="40dp">
                 <bitmap android:src="@android:drawable/star_off" />

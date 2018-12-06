@@ -27,11 +27,11 @@ public class GameDialog {
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.setContentView(R.layout.game_dialog);
 
-        TextView twoStarText = (TextView) dialog.findViewById(R.id.twoStar);
-        twoStarText.setText("0:"+twoStar);
+        TextView twoStarText = (TextView) dialog.findViewById(R.id.threeStars);
+        twoStarText.setText("0:0"+threeStar);
 
-        TextView threeStarText = (TextView) dialog.findViewById(R.id.threeStar);
-        threeStarText.setText("0:0"+threeStar);
+        TextView threeStarText = (TextView) dialog.findViewById(R.id.twoStars);
+        threeStarText.setText("0:"+twoStar);
 
         dialog.show();
         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
