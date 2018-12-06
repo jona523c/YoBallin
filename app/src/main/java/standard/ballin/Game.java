@@ -147,7 +147,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
 
         timer = new Chronometer(getContext());
         timer.setId(R.id.timer);
-        timer.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 15, getResources().getDisplayMetrics()));
+        timer.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 14, getResources().getDisplayMetrics()));
         timer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
             public void onChronometerTick(Chronometer chronometer) {
