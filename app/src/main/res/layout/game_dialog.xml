@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/a2"
+        android:id="@+id/dark_brown_box"
         android:layout_width="218dp"
         android:layout_height="219dp"
         android:layout_marginStart="8dp"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/a"
+        android:id="@+id/white_box"
         android:layout_width="209dp"
         android:layout_height="210dp"
         android:layout_marginStart="8dp"
@@ -44,7 +44,7 @@
         android:layout_marginEnd="8dp"
         android:text="Complete the level before the given times to get the stars"
         android:textColor="@color/dark_grey"
-        android:textSize="18dp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,93 +53,79 @@
 
     <TextView
         android:id="@+id/twoStar"
+        style="@style/dialog_title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="92dp"
-        android:text="0:00"
-        android:textAllCaps="true"
-        android:textColor="@color/dark_grey"
-        android:textSize="@dimen/font_big"
-        app:layout_constraintStart_toStartOf="@+id/a"
+        android:text="@string/Timer"
+        app:layout_constraintStart_toStartOf="@+id/white_box"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/threeStar"
+        style="@style/dialog_title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
-        android:text="0:00"
-        android:textAllCaps="true"
-        android:textColor="@color/dark_grey"
-        android:textSize="@dimen/font_big"
-        app:layout_constraintStart_toStartOf="@+id/a"
+        android:text="@string/Timer"
+        app:layout_constraintStart_toStartOf="@+id/white_box"
         app:layout_constraintTop_toBottomOf="@+id/twoStar" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/star1of3"
+        style="@style/star_on"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/star_on"
-        app:layout_constraintBottom_toBottomOf="@+id/a"
-        app:layout_constraintEnd_toEndOf="@+id/a"
+        app:layout_constraintBottom_toBottomOf="@+id/white_box"
+        app:layout_constraintEnd_toEndOf="@+id/white_box"
         app:layout_constraintHorizontal_bias="0.197"
         app:layout_constraintStart_toEndOf="@+id/twoStar"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.524" />
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/star2of3"
+        style="@style/star_on"
         android:layout_marginStart="72dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/star_on"
-        app:layout_constraintBottom_toBottomOf="@+id/a"
+        app:layout_constraintBottom_toBottomOf="@+id/white_box"
         app:layout_constraintStart_toEndOf="@+id/twoStar"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.524" />
 
     <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/star3of3"
+        style="@style/star_on"
         android:layout_marginStart="48dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/star_on"
-        app:layout_constraintBottom_toBottomOf="@+id/a"
+        app:layout_constraintBottom_toBottomOf="@+id/white_box"
         app:layout_constraintStart_toEndOf="@+id/twoStar"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.524" />
 
     <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/star1of2"
+        style="@style/star_on"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/star_on"
-        app:layout_constraintEnd_toEndOf="@+id/a"
+        app:layout_constraintEnd_toEndOf="@+id/white_box"
         app:layout_constraintHorizontal_bias="0.289"
         app:layout_constraintStart_toEndOf="@+id/threeStar"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/star1of3" />
 
     <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/star2of2"
+        style="@style/star_on"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="28dp"
-        android:background="@drawable/star_on"
-        app:layout_constraintEnd_toEndOf="@+id/a"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/white_box"
+        app:layout_constraintTop_toBottomOf="@+id/star2of3" />
 
 </android.support.constraint.ConstraintLayout>

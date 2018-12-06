@@ -6,10 +6,10 @@ import android.media.SoundPool;
 
 import java.util.HashMap;
 
-public class SoundPlayer {
-    public static final int BUTTON = R.raw.button;
-    public static final int DEFEAT = R.raw.defeat;
-    public static final int VICTORY = R.raw.victory;
+class SoundPlayer {
+    static final int BUTTON = R.raw.button;
+    static final int DEFEAT = R.raw.defeat;
+    static final int VICTORY = R.raw.victory;
 
     private static SoundPool soundPool;
     private static HashMap<Integer, Integer> soundMap;
@@ -17,16 +17,25 @@ public class SoundPlayer {
     private static float volume = (float) 1.0;
     private static boolean playState = true;
 
-    public static void initSounds(Context context) {
+    /**
+     *  Initializes the sounds in the SoundPool.
+     * @param context context its called from
+     */
+    static void initSounds(Context context) {
         soundPool = new SoundPool(2, AudioManager.STREAM_MUSIC, 100);
-        soundMap = new HashMap(3);
+        soundMap = new HashMap<Integer, Integer>(3);
 
         soundMap.put(BUTTON, soundPool.load(context, BUTTON, 1));
         soundMap.put(DEFEAT, soundPool.load(context, DEFEAT, 2));
         soundMap.put(VICTORY, soundPool.load(context, VICTORY, 3));
     }
 
-    public static void playSound(Context context, int soundNumber) {
+    /**
+     *  If sounds aren't initialized, will initialize them. Plays the specified sound.
+     * @param context  context its called from
+     * @param soundNumber  the song to be played, is specified by enums
+     */
+    static void playSound(Context context, int soundNumber) {
         if (soundPool == null) {
             initSounds(context);
         }
@@ -35,23 +44,48 @@ public class SoundPlayer {
         }
     }
 
-    public static void setVolume(float number) {
+    /**
+     *  Sets the volume of the SoundPool
+     * @param number the number to set the volume to
+     */
+    static void setVolume(float number) {
         volume = number;
     }
 
-    public static float getVolume() {
+    /**
+     *  Returns the current volume of the SoundPool
+     * @return current volume of MediaPlayer
+     */
+    static float getVolume() {
         return volume;
     }
 
-    public static void turnOn() {
+    /**
+     *  Turns on the SoundPool
+     */
+    static void turnOn() {
         playState = true;
     }
 
-    public static void turnOff() {
+    /**
+     * Turns off the SoundPool
+     */
+    static void turnOff() {
         playState = false;
     }
 
-    public static boolean getPlayState() {
+    /**
+     *  Returns if the SoundPool is on or off
+     * @return SoundPool's playState
+     */
+    static boolean getPlayState() {
         return playState;
+    }
+
+    /**
+     *  Releases the SoundPool
+     */
+    static void release() {
+        soundPool.release();
     }
 }

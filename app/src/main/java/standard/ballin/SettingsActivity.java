@@ -30,7 +30,7 @@ public class SettingsActivity extends AppCompatActivity {
         audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
 
         // Sound toggle on and off.
-        soundSwitch = (Switch) findViewById(R.id.soundSwitch);
+        soundSwitch = findViewById(R.id.soundSwitch);
         soundSwitch.setChecked(SoundPlayer.getPlayState());
         soundSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,14 +45,13 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         // Music toggle on and off.
-        musicSwitch = (Switch) findViewById(R.id.musicSwitch);
+        musicSwitch = findViewById(R.id.musicSwitch);
         musicSwitch.setChecked(MusicPlay.getPlayState());
         musicSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (MusicPlay.getPlayState()) {
                     MusicPlay.turnOff();
-                    MusicPlay.pauseAudio();
                 } else {
                     MusicPlay.turnOn();
                     MusicPlay.resumeAudio();
@@ -61,7 +60,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        backButton = (ImageView) findViewById(R.id.backView);
+        backButton = findViewById(R.id.backView);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,8 +68,8 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        // SeekBar that controls volume level (currently for the whole phone)
-        musicBar = (SeekBar) findViewById(R.id.musicBar);
+        // SeekBar that controls the volume level of MusicPlay
+        musicBar = findViewById(R.id.musicBar);
         musicBar.setMax(10);
         musicBar.setProgress(convertFromFloatToInt(MusicPlay.getVolume()));
         Log.d("MusicPlay", "musicBar progress has been set to "+convertFromFloatToInt(MusicPlay.getVolume()));
@@ -90,7 +89,8 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        soundBar = (SeekBar) findViewById(R.id.soundBar);
+        // SeekBar that controls the volume level of SoundPlayer
+        soundBar = findViewById(R.id.soundBar);
         soundBar.setMax(10);
         soundBar.setProgress(convertFromFloatToInt(SoundPlayer.getVolume()));
         Log.d("SoundPlayer", "soundBar progress has been set to "+convertFromFloatToInt(SoundPlayer.getVolume()));
@@ -124,11 +124,21 @@ public class SettingsActivity extends AppCompatActivity {
         super.onPause();
     }
 
+    /**
+     * Converts the int to float for volume
+     * @param intVal int to be converted
+     * @return the converted float
+     */
     private float convertFromIntToFloat(int intVal) {
         float floatVal = .1f * intVal;
         return floatVal;
     }
 
+    /**
+     * Converts the float to ínt for volume
+     * @param floatVal float to be converted
+     * @return the converted int
+     */
     private int convertFromFloatToInt(float floatVal) {
         int intVal = (int) (floatVal/0.1);
         return intVal;

@@ -11,17 +11,19 @@ import android.widget.*;
  * Dialog class for the victory.
  * @author Jonas Madsen
  */
-public class FinishDialog {
+class FinishDialog {
     /**
      * Called to create and show the dialog
      * @param activity activity calling the dialog
-     * @param bundle
+     * @param bundle bundle containing the stars earned in the level, key "stars"
      */
-    public void showDialog(final Activity activity, Bundle bundle, final Bundle bundle2){
+    void showDialog(final Activity activity, Bundle bundle, final Bundle bundle2){
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.setCancelable(false);
+
+        // Determines the layout of the finish dialog based on the stars earned
         int stars = bundle.getInt("stars");
         switch (stars) {
             case 1: dialog.setContentView(R.layout.finish_one_dialog);
@@ -33,7 +35,7 @@ public class FinishDialog {
         }
         Log.d("FinishDialog", "Stars in Finishdialog was set to: "+stars);
 
-        Button nextButton = (Button) dialog.findViewById(R.id.resume_button);
+        Button nextButton = dialog.findViewById(R.id.resume_button);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,7 +49,7 @@ public class FinishDialog {
             }
         });
 
-        Button quitButton = (Button) dialog.findViewById(R.id.quit_button);
+        Button quitButton = dialog.findViewById(R.id.quit_button);
         quitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

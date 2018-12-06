@@ -2,13 +2,12 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/a3"
+        android:id="@+id/dark_brown_box"
         android:layout_width="227dp"
         android:layout_height="255dp"
         android:layout_marginStart="8dp"
@@ -23,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/a"
+        android:id="@+id/white_box"
         android:layout_width="218dp"
         android:layout_height="246dp"
         android:layout_marginStart="8dp"
@@ -37,7 +36,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/view3"
+        android:id="@+id/black_line"
         android:layout_width="200dp"
         android:layout_height="3dp"
         android:layout_marginStart="8dp"
@@ -47,7 +46,7 @@
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/a3" />
+        app:layout_constraintTop_toTopOf="@+id/dark_brown_box" />
 
     <Button
         android:id="@+id/resume_button"
@@ -63,7 +62,7 @@
         android:text="@string/button_next_level"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view3" />
+        app:layout_constraintTop_toBottomOf="@+id/black_line" />
 
     <Button
         android:id="@+id/quit_button"
@@ -83,68 +82,45 @@
         app:layout_constraintTop_toBottomOf="@+id/resume_button"
         app:layout_constraintVertical_bias="0.111" />
 
-    <android.support.v4.widget.Space
-        android:id="@+id/marginSpacer"
-        android:layout_width="0dp"
-        android:layout_height="5dp"
-        android:layout_marginRight="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="@id/imageView5"
-        app:layout_constraintRight_toRightOf="@id/imageView5" />
-
     <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="66dp"
-        android:layout_marginBottom="4dp"
-        android:background="@drawable/star_on"
-        android:clipChildren="false"
-        android:clipToPadding="false"
+        android:id="@+id/star1"
+        style="@style/star_on"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/star3"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/marginSpacer" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="66dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="4dp"
-        android:background="@drawable/star_on"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:id="@+id/star2"
+        style="@style/star_on"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="80dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/marginSpacer" />
+        app:layout_constraintStart_toEndOf="@+id/star3"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:id="@+id/star3"
+        style="@style/star_on"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/star_on"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/Victory"
+        style="@style/dialog_title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="8dp"
         android:text="@string/title_victory"
-        android:textAllCaps="true"
-        android:textColor="@color/dark_grey"
-        android:textSize="@dimen/font_big"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 </android.support.constraint.ConstraintLayout>

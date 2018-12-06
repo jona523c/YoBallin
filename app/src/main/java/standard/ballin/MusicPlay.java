@@ -26,11 +26,13 @@ public class MusicPlay extends Service implements MediaPlayer.OnPreparedListener
         return null;
     }
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-    }
-
+    /**
+     * Called when the service is started. Prepares the MediaPlayer asynchronous.
+     * @param intent intent recieved with the service start
+     * @param flags flags recieved with the service start
+     * @param startId startID recieved with the service start
+     * @return a enum int if it was successful or not
+     */
     public int onStartCommand(Intent intent, int flags, int startId) {
         mediaPlayer = new MediaPlayer();
         String filename = "android.resource://" + this.getPackageName() + "/raw/music";
@@ -41,7 +43,6 @@ public class MusicPlay extends Service implements MediaPlayer.OnPreparedListener
         }
         mediaPlayer.setOnPreparedListener(this);
         mediaPlayer.prepareAsync();
-        //isPlaying = true;
         return Service.START_STICKY;
     }
 
@@ -51,10 +52,16 @@ public class MusicPlay extends Service implements MediaPlayer.OnPreparedListener
         mediaPlayer.setLooping(true);
     }
 
+    /**
+     *  Turns on the MediaPlayer
+     */
     public static void turnOn() {
         playState = true;
     }
 
+    /**
+     * Turns off the MediaPlayer and pauses it.
+     */
     public static void turnOff() {
         playState = false;
         pauseAudio();
@@ -64,7 +71,6 @@ public class MusicPlay extends Service implements MediaPlayer.OnPreparedListener
      * Pauses the audio
      */
     public static void pauseAudio() {
-        //isPlaying = false;
         if (mediaPlayer != null) {
             mediaPlayer.pause();
         }
@@ -75,22 +81,33 @@ public class MusicPlay extends Service implements MediaPlayer.OnPreparedListener
      */
     public static void resumeAudio() {
         if (playState) {
-            //isPlaying = true;
             if (mediaPlayer != null) {
                 mediaPlayer.start();
             }
         }
     }
 
+    /**
+     *  Returns if the MediaPlayer is on or off
+     * @return MediaPlayer's playState
+     */
     public static boolean getPlayState() {
         return playState;
     }
 
+    /**
+     *  Sets the volume of the MediaPlayer
+     * @param number the number to set the volume to
+     */
     public static void setVolume(float number) {
         volume = number;
         mediaPlayer.setVolume(number, number);
     }
 
+    /**
+     *  Returns the current volume of the MediaPlayer
+     * @return current volume of MediaPlayer
+     */
     public static float getVolume() {
         return volume;
     }

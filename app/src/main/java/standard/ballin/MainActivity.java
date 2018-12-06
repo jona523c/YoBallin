@@ -1,6 +1,7 @@
 package standard.ballin;
 
 import android.content.Intent;
+import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
-        // Start soundPool
+        // Initializes soundPool
         SoundPlayer.initSounds(this);
 
         // Starts the background music
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         startService(music);
 
         // If sound shortcut is clicked, turn on or turn off sound.
-        soundButton = (ImageView) findViewById(R.id.soundView);
+        soundButton = findViewById(R.id.soundView);
         soundButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Settings shortcut starts Settings activity
-        settingsButton = (ImageView) findViewById(R.id.settingsView);
+        settingsButton = findViewById(R.id.settingsView);
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,12 +70,8 @@ public class MainActivity extends AppCompatActivity {
             MusicPlay.resumeAudio();
         }
 
-        if (MusicPlay.getPlayState() || SoundPlayer.getPlayState()) {
-            soundToggle = true;
-        } else {
-            soundToggle = false;
-        }
-        soundButton = (ImageView) findViewById(R.id.soundView);
+        soundToggle = MusicPlay.getPlayState() || SoundPlayer.getPlayState();
+        soundButton = findViewById(R.id.soundView);
         soundButton.setActivated(soundToggle);
         super.onResume();
     }
@@ -89,14 +86,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         Intent music = new Intent(this, MusicPlay.class);
         stopService(music);
-        // Release mediaPlayer to free memory
+        SoundPlayer.release();
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onDestroy();
     }
 
     /**
      * Called when user clicks play button, starts the Levels screen
-     * @param view
+     * @param view view calling this method
      */
     public void playButton(View view) {
         SoundPlayer.playSound(this, SoundPlayer.BUTTON);

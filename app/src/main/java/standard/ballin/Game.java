@@ -57,8 +57,8 @@ public class Game extends ConstraintLayout implements SensorEventListener {
 
     /**
      * Initialize a game object, which contains the level that is selected.
-     * @param context
-     * @param levelStrategy
+     * @param context context calling the game
+     * @param levelStrategy the Level to be used in this Game
      */
     public Game(Context context, LevelStrategy levelStrategy) {
         super(context);
@@ -151,7 +151,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
 
         timer = new Chronometer(getContext());
         timer.setId(R.id.timer);
-        timer.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics()));
+        timer.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 15, getResources().getDisplayMetrics()));
         timer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
             public void onChronometerTick(Chronometer chronometer) {
@@ -421,7 +421,6 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         ball.setPosX(-0.006f);
         ball.setPosY(-0.03f);
         startGame();
-        //TODO: Restart
 
     }
 
