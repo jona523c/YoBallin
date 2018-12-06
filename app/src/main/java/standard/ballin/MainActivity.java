@@ -1,5 +1,6 @@
 package standard.ballin;
 
+import android.content.Context;
 import android.content.Intent;
 import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.*;
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.games.Games;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.signin.SignInOptions;
 
 
 /**
@@ -16,6 +25,8 @@ import android.widget.*;
 public class MainActivity extends AppCompatActivity {
     ImageView soundButton, settingsButton, trophyButton;
     private boolean soundToggle;
+    private static final int RC_LEADERBOARD_UI = 9004;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +77,15 @@ public class MainActivity extends AppCompatActivity {
         trophyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: do shit
+                /*
+                Games.getLeaderboardsClient(MainActivity.this, GoogleSignIn.getLastSignedInAccount(MainActivity.this))
+                        .getLeaderboardIntent(getString(R.string.leaderboard_id))
+                        .addOnSuccessListener(new OnSuccessListener<Intent>() {
+                            @Override
+                            public void onSuccess(Intent intent) {
+                                startActivityForResult(intent, RC_LEADERBOARD_UI);
+                            }
+                        });*/
             }
         });
     }
