@@ -1,34 +1,18 @@
 package standard.ballin;
 
-import android.content.Context;
 import android.content.Intent;
-import android.media.SoundPool;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.*;
 
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.auth.api.signin.GoogleSignInStatusCodes;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.games.Games;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.signin.SignInOptions;
-
 
 /**
  * Activity class for Main Menu
  * @author Jonas Madsen
  */
-public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
+public class MainActivity extends AppCompatActivity {
     ImageView soundButton, settingsButton, trophyButton;
     private boolean soundToggle;
 
@@ -130,8 +114,4 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         startActivity(intent);
     }
 
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
-    }
 }

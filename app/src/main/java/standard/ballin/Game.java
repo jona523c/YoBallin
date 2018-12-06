@@ -13,14 +13,7 @@ import android.support.constraint.ConstraintSet;
 import android.util.*;
 import android.view.*;
 import android.widget.*;
-
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.games.Games;
-
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.Timer;
 
 import standard.ballin.levelstrategies.LevelStrategy;
 
@@ -310,14 +303,6 @@ public class Game extends ConstraintLayout implements SensorEventListener {
             if (sharedPref.getInt(levelStrategy.getLevel(), 0) < stars) {
                 editor.putInt(levelStrategy.getLevel(), stars);
                 editor.apply();
-                if(GoogleSignIn.getLastSignedInAccount(getContext())!=null) {
-                    int totalStars = 0;
-                    for(int i = 1; i<4; i++) {
-                        totalStars += sharedPref.getInt(String.valueOf(i), stars);
-                    }
-                    Games.getLeaderboardsClient(getContext(), GoogleSignIn.getLastSignedInAccount(getContext()))
-                            .submitScore(String.valueOf(R.string.leaderboard_id), totalStars);
-                }
             }
             finishDialog();
             return;

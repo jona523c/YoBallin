@@ -1,11 +1,8 @@
 package standard.ballin;
 
-import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.view.View;
 import android.view.WindowManager;
-import android.widget.Chronometer;
 
 import standard.ballin.levelstrategies.Level1Strategy;
 import standard.ballin.levelstrategies.Level2Strategy;
