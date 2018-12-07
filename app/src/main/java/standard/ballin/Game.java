@@ -32,13 +32,12 @@ public class Game extends ConstraintLayout implements SensorEventListener {
     private TextView levelText;
     private Chronometer timer;
     private Display display;
-    private Rect rect, rectWall;
+    private Rect rect;
     private ArrayList<Rect> rectWalls;
     private LevelStrategy levelStrategy;
     private Paint paint, paintWall;
     private SensorManager sensorManager;
     private int ballWidth, ballHeight;
-    private float scale = getResources().getDisplayMetrics().density;
     private static final float ballDiameter = 0.004f;
     private float scaleHeightFromDpi, scaleWidthFromDpi, heightDpi, widthDpi, sensorY, sensorX, currentX, currentY, horizontalCeiling, verticalCeiling;
     private long lastStamp;
