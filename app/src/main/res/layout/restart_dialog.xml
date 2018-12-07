@@ -73,6 +73,7 @@
 
     <Button
         android:id="@+id/no_button"
+        style="@style/buttons_text"
         android:layout_width="75dp"
         android:layout_height="45dp"
         android:layout_centerHorizontal="true"
@@ -83,11 +84,9 @@
         android:background="@drawable/white_button"
         android:gravity="center_vertical|center_horizontal"
         android:text="@string/button_no"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/white_box"
         app:layout_constraintEnd_toStartOf="@+id/yes_button"
         app:layout_constraintStart_toStartOf="@+id/white_box"
-        app:layout_constraintTop_toBottomOf="@+id/paused"
-        style="@style/buttons_text"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/paused" />
 
 </android.support.constraint.ConstraintLayout>
