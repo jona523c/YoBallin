@@ -88,7 +88,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toStartOf="@+id/star3"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/white_box"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -96,6 +97,8 @@
         style="@style/star_on"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/white_box"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toEndOf="@+id/star3"
         app:layout_constraintTop_toTopOf="parent" />
