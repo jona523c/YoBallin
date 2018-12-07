@@ -6,7 +6,7 @@ import android.view.*;
 import android.widget.*;
 
 /**
- * Dialog class for the victory.
+ * Dialog class for the beginning screen of each level
  * @author Jonas Madsen
  */
 public class GameDialog {

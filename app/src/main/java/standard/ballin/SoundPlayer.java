@@ -6,6 +6,10 @@ import android.media.SoundPool;
 
 import java.util.HashMap;
 
+/**
+ * Class for creating a global SoundPool to be turned on and off in different activities
+ * @author Jonas Madsen
+ */
 class SoundPlayer {
     static final int BUTTON = R.raw.button;
     static final int DEFEAT = R.raw.defeat;
