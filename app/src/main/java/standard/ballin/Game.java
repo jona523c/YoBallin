@@ -23,6 +23,8 @@ import static java.lang.StrictMath.abs;
 /**
  *  Game class: The actual game, which is the content view when GameActivity is opened.
  * @author Frederik Nielsen
+ * @author Jonas Madsen
+ *
  * Frederik Nielsen: Main author
  * Jonas Madsen: Changed timer to display seconds
  */
@@ -88,7 +90,7 @@ public class Game extends ConstraintLayout implements SensorEventListener {
         paint = new Paint();
         paint.setColor(Color.GREEN);
         paintWall = new Paint();
-        paintWall.setColor(getResources().getColor(R.color.dark_brown));
+        paintWall.setColor(getResources().getColor(R.color.light_brown));
 
         rectWalls = new ArrayList<>();
         for(Wall w : levelStrategy.getWalls()) {
