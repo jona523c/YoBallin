@@ -83,6 +83,8 @@ public class GameActivity extends FragmentActivity {
             MusicPlay.resumeAudio();
         }
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
     }
 
@@ -127,7 +129,7 @@ public class GameActivity extends FragmentActivity {
     }
 
     /**
-     * Opens the game   Dialog.
+     * Opens the gameDialog.
      */
     public void gameDialog() {
         GameDialog game = new GameDialog(levelStrategy.getTime2(), levelStrategy.getTime3());

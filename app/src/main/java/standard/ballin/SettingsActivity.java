@@ -113,6 +113,8 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         if (MusicPlay.getPlayState()) {
             MusicPlay.resumeAudio();
         }

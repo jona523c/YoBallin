@@ -96,6 +96,8 @@ public class LevelsActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         // Make sure the shortcut is in the correct state
         if (MusicPlay.getPlayState()) {
             MusicPlay.resumeAudio();

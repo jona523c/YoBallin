@@ -289,9 +289,9 @@ public class Game extends ConstraintLayout implements SensorEventListener {
             gameDialog();
             timer.stop();
             stopGame();
-            rect = new Rect(finishline.getLeft(), finishline.getTop(), finishline.getRight() , finishline.getBottom());
         firsttime = false;}
 
+        rect = new Rect(finishline.getLeft(), finishline.getTop(), finishline.getRight() , finishline.getBottom());
         for(Rect r : rectWalls) {
           canvas.drawRect(r, paintWall);
         }
