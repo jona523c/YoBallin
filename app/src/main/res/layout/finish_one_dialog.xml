@@ -85,17 +85,18 @@
     <ImageView
         android:id="@+id/star1"
         style="@style/star_on"
-        android:layout_marginStart="120dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toStartOf="@+id/star3"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/star2"
         style="@style/star_off"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="80dp"
+        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toEndOf="@+id/star3"
         app:layout_constraintTop_toTopOf="parent" />
