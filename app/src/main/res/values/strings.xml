@@ -19,4 +19,5 @@
     <string name="button_no">No</string>
     <string name="Timer">0:00</string>
     <string name="level">Level</string>
+    <string name="level_1">Level 1</string>
 </resources>
